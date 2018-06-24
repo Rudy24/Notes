@@ -193,26 +193,28 @@ function Archiver () {
   this.getArchive = function () { return archive;}
 }
 
-
 // ES5有三个操作会忽略enumerable为false的属性。
 
 // for...in循环：只遍历对象自身的和继承的可枚举的属性
 // Object.keys()：返回对象自身的所有可枚举的属性的键名
 // JSON.stringify()：只串行化对象自身的可枚举的属性
 
+1. 基于数据劫持实现的双向绑定的特点
+// 1.1 什么是数据劫持
+数据劫持--在属性值发生变化时，我们可以获取到变化，从而进行下一步操作
 
-// 这是将要被劫持的对象
+// 
 const data = {
   name: '',
 };
 
 function say(name) {
-  if (name === '古天乐') {
-    console.log('给大家推荐一款超好玩的游戏');
-  } else if (name === '渣渣辉') {
-    console.log('戏我演过很多,可游戏我只玩贪玩懒月');
+  if (name === 'rudy') {
+    console.log('rudy');
+  } else if (name === 'kobe') {
+    console.log('kobe');
   } else {
-    console.log('来做我的兄弟');
+    console.log('hello world');
   }
 }
 
@@ -232,26 +234,9 @@ Object.keys(data).forEach(function(key) {
   });
 });
 
-data.name = '渣渣辉';
-//大家好,我系渣渣辉
-//戏我演过很多,可游戏我只玩贪玩懒月
+data.name;
+// get
 
-
-const obj = {};
-Object.defineProperty(obj, 'text', {
-  get: function () {
-    console.log('get val');
-  },
-  set: function (newVal) {
-    console.log('set val' + newVal);
-    document.getElementById('input').value = newVal;
-    document.getElementById('p').innerHTML = newVal;
-  } 
-});
-
-const input = document.getElementById('input');
-input.addEventListener('keyup', function(e) {
-  obj.text = e.target.value;
-})
-
-
+data.name = 'rudy';
+// 大家好,我系rudy
+// rudy
