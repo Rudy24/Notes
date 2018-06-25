@@ -391,3 +391,6 @@ delete proxy._prop;
 注意，目标对象自身的不可配置（configurable）的属性，不能被`deleteProperty`方法删除，否则报错。
 
 
+##  参考资料  ##
+>
+1. [主要参考的是阮一峰老是的文章](http://es6.ruanyifeng.com/#docs/proxy)
