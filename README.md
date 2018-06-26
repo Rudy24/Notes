@@ -10,3 +10,4 @@
 4. [Object.defineProperty 学习] (https://github.com/Rudy24/Notes/blob/master/JavaScript/Object/Object.defineProperty.md)
 5. [Object.freeze 学习] (https://github.com/Rudy24/Notes/blob/master/JavaScript/Object/Object.freeze.md)
 6. [Object.seal 学习] (https://github.com/Rudy24/Notes/blob/master/JavaScript/Object/Object.seal.md)
+3. [apply，call，bind 学习以及实现过程] (https://github.com/Rudy24/Notes/blob/master/JavaScript/Object/Object.seal.md)
