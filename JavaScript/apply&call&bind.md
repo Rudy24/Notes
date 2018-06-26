@@ -180,3 +180,12 @@ Function.prototype.apply = function (context, args) {
 }
 
 ```
+
+PS: 以上apply，call实现过程请参考 (https://github.com/mqyqingfeng/Blog/issues/11)
+
+
+##  参考资料  ##
+>
+1. [JavaScript 中 apply 、call 的详解](https://github.com/lin-xin/blog/issues/7)
+2. [深入浅出 妙用Javascript中apply、call、bind](https://www.cnblogs.com/coco1s/p/4833199.html)
+3. [JavaScript深入之call和apply的模拟实现](https://github.com/mqyqingfeng/Blog/issues/11)
