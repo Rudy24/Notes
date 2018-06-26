@@ -3,7 +3,7 @@
 apply()，call() 方法调用一个函数, 其具有一个指定的this值，以及作为一个数组（或类似数组的对象）提供的参数。
 换句话说，就是为了改变函数体内部 this 的指向。
 
-#apply()
+# apply()
 `apply`方法传入两个参数：1.作为函数上下文的对象，2.作为函数参数所组成的数组。
 
 ```javascript
@@ -20,7 +20,7 @@ func.apply(obj, ['hello', 'world']); // hello rudy world;
 ```
 可以看出，`obj`作为函数上下文的对象，函数`func`中的`this`指向了`obj`对象，`['hello', 'world'] `是放在数组中传入`func`函数，对应`func`参数列表
 
-#call()
+# call()
 `call`方法跟`apply`方法基本一致，区别在于提供的参数是一个列表，并非单个数组。
 
 ```javascript
@@ -40,7 +40,7 @@ func.call(obj, 'hello', 'world'); // hello rudy world
 至于什么时候用`call` 或 `apply`,如果你的参数为数组，就用`apply`，如果参数比较零散，就用`call`
 
 #apply 和 call 的用法
-# 1. 改变 this 的指向
+1. 改变 this 的指向
 ```javascript
 
 var obj = {
@@ -65,7 +65,7 @@ function func() {
 }
 
 ```
-#借用别的对象方法
+2. 借用别的对象方法
 
 ```javascript
 
@@ -87,7 +87,7 @@ person.getname(); // rudy
 
 从上面我们看到，`Person2` 实例化出来的对象 `person` 通过 `getname` 方法拿到了 `Person1` 中的 `name`。因为在 `Person2` 中，`Person1.call(this)` 作用就是借用`Person1`的方法并且把`this`指向`Person2`，那么 `Person2 `就有了 `Person1` 中的所有属性和方法了，相当于 `Person2` 继承了 `Person1` 的属性和方法。
 
-#调用函数
+3. 调用函数
 `apply,call`方法都会使函数立即执行，因此它们也可以用来调用函数。
 ```javascript
 
@@ -104,7 +104,7 @@ func.call(null, 'A', 'B');  // 输入 A,B
 
 ```
 
-#为了巩固加深记忆，下面列举一些常用用法：
+# 为了巩固加深记忆，下面列举一些常用用法：
 
 1. 数组之间的追加
 ```javascript
@@ -148,9 +148,9 @@ Javascript中存在一种名为伪数组的对象结构。比较特别的是 `ar
 
 ```
 
-#apply 和 call的实现方式
+# apply 和 call的实现方式
 
-#call
+# call
 ```javascript
 
 Function.prototype.call = function (context, ...args) {
@@ -163,7 +163,7 @@ Function.prototype.call = function (context, ...args) {
 
 ```
 
-#apply
+# apply
 ```javascript
 
 Function.prototype.apply = function (context, args) {
