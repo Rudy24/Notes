@@ -39,7 +39,7 @@ func.call(obj, 'hello', 'world'); // hello rudy world
 
 至于什么时候用`call` 或 `apply`,如果你的参数为数组，就用`apply`，如果参数比较零散，就用`call`
 
-#apply 和 call 的用法
+# apply 和 call 的用法
 1. 改变 this 的指向
 ```javascript
 
