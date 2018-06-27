@@ -148,7 +148,98 @@ Javascript中存在一种名为伪数组的对象结构。比较特别的是 `ar
 
 ```
 
-# apply 和 call的实现方式
+# bind
+什么是 bind：
+> bind() 方法会创建一个新函数。当这个新函数被调用时，bind() 的第一个参数将作为它运行时的 this，
+> 之后的一序列参数将会在传递的实参前传入作为它的参数。(来自于 MDN )
+
+由此我们可以得出`bind`函数的两个特点：
+ 1. 会返回一个函数
+ 2. 可以传入参数
+
+请看例子：
+
+在常见的单体模式中，通常我们会使用 `var self = this`等保存 `this`，这样我们可以在改变了上下文之后，继续引用它。 例如
+
+```javascript
+建立个方法，输出foo内的name值
+var name = 'kobe';
+var foo = {
+  name: 'rudy',
+  eBind: function () {
+    return (function () {
+      console.log(this.name)
+    })()
+  }
+}
+
+foo.eBind(); // kobe
+
+这里与我们想要的结果不一致，我们改下
+
+var foo = {
+  name: 'rudy',
+  eBind: function () {
+    var self = this;
+    return (function () {
+      console.log(self.name)
+    })()
+  }
+}
+
+foo.eBind(); // rudy
+
+```
+最后就得到了想要的结果，当然使用bind() 也可以更好的解决这个问题。
+
+```javascript
+var name = 'kobe'
+var foo = {
+  name: 'rudy',
+  eBind: function () {
+    return (function () {
+      console.log(this.name)
+    }).bind(this)()
+  }
+}
+
+foo.eBind(); // rudy
+
+``` 
+
+# apply、call、bind比较
+
+那么 `apply`、`call`、`bind` 三者相比较，之间又有什么异同呢？何时使用 `apply`、`call`，何时使用 `bind` 呢。简单的一个栗子：
+
+```javascript
+
+var obj = {
+  value: 11
+};
+
+var foo = {
+  getValue: function () {
+    return this.value;
+  }
+};
+
+foo.getValue.call(obj); // 11
+foo.getValue.apply(obj); // 11
+foo.getValue.bind(obj)(); // 11
+
+```
+三个都是输出11，但在使用`bind()` 的时候，后面多了对括号，`这是因为调用了bind，它返回的是函数`，所以需要在执行一次才能得到结果。
+
+
+# 再总结一下：
+
+1. apply 、 call 、bind 三者都是用来改变函数的this对象的指向的；
+2. apply 、 call 、bind 三者第一个参数都是this要指向的对象，也就是想指定的上下文；
+3. apply 、 call 、bind 三者都可以利用后续参数传参；
+4. bind 是返回对应函数，便于稍后调用；apply 、call 则是立即调用。
+
+
+# apply 和 call、bind的实现方式
 
 # call
 ```javascript
@@ -181,11 +272,41 @@ Function.prototype.apply = function (context, args) {
 
 ```
 
-PS: 以上apply，call实现过程请参考 (https://github.com/mqyqingfeng/Blog/issues/11)
+# bind
+```javascript
 
+Function.prototype.bind = function (context) {
+  // 调用 bind的必须是函数
+  if (typeof this !== 'function') {
+    throw new Error('Function.prototype.bind - what is trying tobe bound is not callable');
+  }
+
+  var self = this;
+  // 获取第二个到最后一个的参数
+  var args = Array.prototype.slice.call(arguments, 1); 
+
+  var fNOP = function () {};
+
+  var fBound = function () {
+    // 这个arguments跟上面的arguments不一样，这个是绑定后 返回函数arguments
+    var bindArgs = Array.prototype.slice.call(arguments);
+    return self.apply(this instanceof fNOP ? this : context, args.concat(bindArgs));
+  }
+
+  fNOP.prototype = this.prototype;
+  fBound.prototype = new fNOP();
+  return fBound;
+}
+
+```
+
+# PS: 
+> 以上apply，call实现过程请参考 (https://github.com/mqyqingfeng/Blog/issues/11)
+> 以上bind实现过程请参考 (https://github.com/mqyqingfeng/Blog/issues/12)
 
 ##  参考资料  ##
 >
 1. [JavaScript 中 apply 、call 的详解](https://github.com/lin-xin/blog/issues/7)
 2. [深入浅出 妙用Javascript中apply、call、bind](https://www.cnblogs.com/coco1s/p/4833199.html)
 3. [JavaScript深入之call和apply的模拟实现](https://github.com/mqyqingfeng/Blog/issues/11)
+4. [JavaScript深入之bind的模拟实现](https://github.com/mqyqingfeng/Blog/issues/12)
