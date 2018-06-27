@@ -301,8 +301,8 @@ Function.prototype.bind = function (context) {
 ```
 
 # PS: 
-> 以上apply，call实现过程请参考 (https://github.com/mqyqingfeng/Blog/issues/11)
-> 以上bind实现过程请参考 (https://github.com/mqyqingfeng/Blog/issues/12)
+> 1. 以上apply，call实现过程请参考 (https://github.com/mqyqingfeng/Blog/issues/11)
+> 2. 以上bind实现过程请参考 (https://github.com/mqyqingfeng/Blog/issues/12)
 
 ##  参考资料  ##
 >
