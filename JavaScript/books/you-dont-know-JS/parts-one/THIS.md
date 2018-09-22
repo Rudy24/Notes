@@ -12,29 +12,29 @@ this 关键字是JavaScript 中最复杂的机制之一。this的绑定和函数
 ```javascript
 
 function baz() {
-  当前调用栈是：baz
-  因此, 当前调用位置是全局作用域
+  // 当前调用栈是：baz
+  // 因此, 当前调用位置是全局作用域
 
   console.log('baz');
-  bar();  bar的调用位置
+  bar();  // bar的调用位置
 }
 
 function bar() {
-  当前调用栈是 baz -> bar
-  因此，当前调用位置在baz 中
+  // 当前调用栈是 baz -> bar
+  // 因此，当前调用位置在baz 中
 
   console.log('bar');
-  foo();  foo的调用位置
+  foo(); // foo的调用位置
 }
 
 function foo() {
-  当前的调用栈是 baz -> bar -> foo
-  因此，当前调用位置在bar中
+  // 当前的调用栈是 baz -> bar -> foo
+  // 因此，当前调用位置在bar中
 
   console.log('foo');
 }
 
-baz(); baz的调用位置
+baz(); // baz的调用位置
 
 ```
 
