@@ -219,3 +219,90 @@ this 关键字是JavaScript 中最复杂的机制之一。this的绑定和函数
   setTimeout(obj.foo, 100) // 'oops, global'
   
   ```
+
+  ### 2.3 显式绑定 #
+
+  就像我们刚才看到的那样，在分析隐式绑定时，我们必须在一个对象内部包含一个指向函数的属性，并通过这个属性间接引用函数，从而把
+  this间接绑定到这个对象上。
+
+  具体点的说，可以使用函数的`call(...)`和 `apply(...)`方法。JavaScript提供的绝大多数函数以及你自己创建的所有函数都可以使用
+  `call(...)` 和 `apply(...)`方法。
+
+  这两个方法是如何工作的？它们的第一个参数是一个对象，是给this准备的，接着在调用函数时给其绑定到this。因为你可以直接指定this的绑定
+  对象，因此我们称之为显示绑定。
+  
+  思考下面的代码：
+
+  ```javascript
+  
+  function foo() {
+    console.log(this.a);
+  }
+
+  var obj = {
+    a: 2
+  }
+
+  foo.call(obj); // 2
+  
+  ```
+
+  通过foo.call(...), 我们可以在调用foo时强制把它的this绑定到obj上。
+
+  如果你传入了一个原始值，(字符串类型、布尔类型或者数字类型) 来当作this的绑定对象，这个原始值会被转换成它的对象形式(也就是new String(...)、new Boolean(...)或者 new Number(...))。这通常被称为 "装箱"。
+
+  从this绑定的角度来说，`call(...)` 和 `apply(...)`是一样的，区别在于传参上，call(...) 是单个传，apply(...) 是传的数组。
+
+   #### 硬绑定 #
+
+   但是显式绑定的一个变种可以解决这个问题。
+   思考如下代码: 
+
+   ```javascript
+   
+   function foo() {
+     console.log(this.a);
+   }
+
+   var obj = {
+     a: 2
+   }
+
+   var bar = function () {
+     foo.call(obj);
+   }
+
+   bar(); // 2
+   
+   setTimeout(bar, 100); // 2
+
+  //  硬绑定的bar不可能再修改它的this
+  bar.call(window); // 2
+   ```
+
+   我们来看看这个变种是怎样工作的。 我们创建了函数bar(),并在它的内部手动调用了 foo.call(obj)，因为强制把foo的this绑定了obj。
+   无论如何调用函数bar，它总是手动在obj上调用foo。这种绑定是一种显示的强制绑定，因此我们称之为硬绑定。
+
+  ### 2.4 new 绑定 #
+
+  使用new来绑定函数，会自动执行下面的操作。
+  1. 创建一个全新的对象。
+  2. 这个新对象会被执行[[Prototype]]连接。
+  3. 这个新对象会绑定到函数调用的this。
+  4. 如果函数没有返回其他对象，那么new表达式中的函数调用会自动返回这个新对象。
+
+  思考下面的代码：
+
+  ```javascript
+ 
+  function foo(a) {
+    this.a = a;
+  }
+
+  var bar = new foo(2);
+
+  console.log(bar.a); // 2
+ 
+  ```
+
+  使用new来调用foo(...)时，我们会构造一个新对象并把它绑定到foo(...)调用中的this上。aaa
