@@ -13,6 +13,7 @@
 7. [apply，call，bind 学习以及实现过程](https://github.com/Rudy24/Notes/blob/master/JavaScript/notes/apply%26call%26bind.md)
 
 ## you dont know JavaScript
-
-# parts-one
-1. [CLOSURES 闭包](https://github.com/Rudy24/Notes/blob/master/JavaScript/books/you-dont-know-JS/parts-one/CLOSURES.md)
+### parts-one
+1. [closures 闭包](https://github.com/Rudy24/Notes/blob/master/JavaScript/books/you-dont-know-JS/parts-one/CLOSURES.md)
+2. [this](https://github.com/Rudy24/Notes/blob/master/JavaScript/books/you-dont-know-JS/parts-one/THIS.md)
+3. [Object](https://github.com/Rudy24/Notes/blob/master/JavaScript/books/you-dont-know-JS/parts-one/OBJECT.md)
