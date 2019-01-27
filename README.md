@@ -17,3 +17,9 @@
 1. [closures 闭包](https://github.com/Rudy24/Notes/blob/master/JavaScript/books/you-dont-know-JS/parts-one/CLOSURES.md)
 2. [this](https://github.com/Rudy24/Notes/blob/master/JavaScript/books/you-dont-know-JS/parts-one/THIS.md)
 3. [Object](https://github.com/Rudy24/Notes/blob/master/JavaScript/books/you-dont-know-JS/parts-one/OBJECT.md)
+
+### Http
+1. [tcp/ip](https://github.com/Rudy24/Notes/blob/master/HTTP/tcp-ip/tcp-ip.md)
+
+### nginx
+1. [nginx 学习](https://github.com/Rudy24/Notes/blob/master/nginx/nginx.md)
