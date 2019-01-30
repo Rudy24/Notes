@@ -69,7 +69,6 @@ var o = Object.create(Object.prototype, {
   }
 })
 
-o 
 ```
 ![](./image/Object.create.png)
 
@@ -123,6 +122,6 @@ o2 // {x: 1, y: 2}
 o2.__proto__ // {constructor: f, ...}
 o2.__proto__.x // undefined
 
-这里可以大概率推出：Object.create() 会将对象继承到__proto__属性上
+这里可以大概率推出：Object.create() 会将对象继承到__proto__属性上。
 ```
 
