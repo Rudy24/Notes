@@ -12,6 +12,7 @@
 6. [Object.seal 学习](https://github.com/Rudy24/Notes/blob/master/notes/Object/Object.seal.md)
 7. [apply，call，bind 学习以及实现过程](https://github.com/Rudy24/Notes/blob/master/notes/apply%26call%26bind.md)
 8. [字符串如何比较大小](https://github.com/Rudy24/Notes/blob/master/notes/compireString.md)
+9. [class 类](https://github.com/Rudy24/Notes/blob/master/notes/class.md)
 
 ### Http
 1. [tcp/ip](https://github.com/Rudy24/Notes/blob/master/HTTP/tcp-ip/tcp-ip.md)
