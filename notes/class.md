@@ -367,3 +367,11 @@ class Cat extends Animal {
 Cat.name = "Tom";
 Cat.print(); // Tom;
 ```
+
+### 参考资料 ###
+
+>
+
+1. [ES6](https://es6.ruanyifeng.com/#docs/class)
+2. [TS class类](https://ts.xcatliu.com/advanced/class)
+
