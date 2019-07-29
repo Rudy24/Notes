@@ -62,10 +62,29 @@
         所以上述代码的执行顺序为：
 
         1. `@babel/plugin-transform-arrow-functions`
-        2. `stage-2` [什么是stage-2?](https://www.babeljs.cn/docs/presets)
+        2. `stage-2`
         3. `env`
     
-      <!-- 来聊聊`env`，`env`主要作用是通过配置得知目标执行环境特点，只做必要的转换， -->
-      continue
+        来聊聊`env`，`env`主要作用是通过配置得知目标执行环境特点，只做必要的转换，
+        例如目标执行环境支持ES2015，那么ES2015`preset`是不需要的，这样代码量就少了写，构建时间也减少些。
+        
     - 生成
     `Babel`会根据`AST`然后解析相对应的代码。
+
+其他配置工具
+
+@babel/cli
+是一个能够从终端(命令行)使用的工具，安装了@babel/cli之后，就可以使用命令行去处理编译了，
+比如代码合并、编译等等
+
+@babel/node
+它是cli的一部分，不需要单独安装。它是运行在node环境中，直接运行es2015代码，不需要额外的进行转码
+
+@babel/polyfill
+`babel`默认只转换js语法，对于一些新的API是不会转换的，例如`Promise`,`Set`,`Maps`,`Symbol`等全局对象，以及一些定义在全局对象上的方法(例如Array.from、Object.assig等)。
+要想在不支持这些API的环境中使用它们，这时候就需要使用到`@babel/polyfill`，它有两部分组成
+1. core-js
+2. regenerator
+
+为了使用以上新API的功能，`polyfill`把所有的方法添加到内置原型链当中， 如果我们只是用了某一个新的API，却也要把其他功能的加上，这无疑是一种极大的浪费，会导致构建出来的包非常大。
+另外`polyfill`会污染全局变量，给很多类的原型链都做了修改，如果我们开发的也是一个类库提供其他开发者使用，那就可太不秒了。
