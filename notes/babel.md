@@ -73,18 +73,40 @@
 
 其他配置工具
 
-@babel/cli
-是一个能够从终端(命令行)使用的工具，安装了@babel/cli之后，就可以使用命令行去处理编译了，
+babel-cli
+是一个能够从终端(命令行)使用的工具，安装了babel-cli之后，就可以使用命令行去处理编译了，
 比如代码合并、编译等等
 
-@babel/node
+babel-node
 它是cli的一部分，不需要单独安装。它是运行在node环境中，直接运行es2015代码，不需要额外的进行转码
 
-@babel/polyfill
+babel-polyfill
 `babel`默认只转换js语法，对于一些新的API是不会转换的，例如`Promise`,`Set`,`Maps`,`Symbol`等全局对象，以及一些定义在全局对象上的方法(例如Array.from、Object.assig等)。
-要想在不支持这些API的环境中使用它们，这时候就需要使用到`@babel/polyfill`，它有两部分组成
-1. core-js
-2. regenerator
+要想在不支持这些API的环境中使用它们，这时候就需要使用到`babel-polyfill`，它有两部分组成
+1. core-js： 转换一些内置类 (Promise, Symbols等等) 和静态方法 (Array.from 等)。绝大部分转换是这里做的。自动引入
+2. regenerator：作为 core-js 的拾遗补漏，主要是 generator/yield 和 async/await 两组的支持。当代码中有使用 generators/async 时自动引入。
 
 为了使用以上新API的功能，`polyfill`把所有的方法添加到内置原型链当中， 如果我们只是用了某一个新的API，却也要把其他功能的加上，这无疑是一种极大的浪费，会导致构建出来的包非常大。
 另外`polyfill`会污染全局变量，给很多类的原型链都做了修改，如果我们开发的也是一个类库提供其他开发者使用，那就可太不秒了。
+
+`babel`转义后的代码会出现大量重复的代码，会导致编译后的代码体积变大，为了解决这个问题，`babel-plugin-transform-runtime`就诞生了，它能很好的解决这个问题。它能很好的避免`babel`编译的工具函数在每个模块都从重复出现，减少代码的体积。
+简单来说：
+1. babel-runtime 是供编译模块复用工具函数
+2. babel-polyfil是转译没有的api. 例如 Map,Promise之类的
+
+以上是Babel 6.x。
+
+`Babel7.x` 
+正在舍弃`Stage preset`,完全取代了之前的一些预设，比如prset-es201x等。
+包名称的变化：语法解析核心插件 `babylon` -> `@babel/parser`,`babel-cli` -> `@babel/cli`,`@babel/` 替换 `babel-`, `babel-preset-env` -> `@babel-preset-env`
+```javascript
+
+{
+  "presets": [
+  -  "env"
+  +  "@babel-preet-env"
+  ]
+}
+
+```
+@babel/node 从 @babel/cli 中独立了，和 babel 6 不同，如果要使用 @babel/node，就必须单独安装，并添加到依赖中。
