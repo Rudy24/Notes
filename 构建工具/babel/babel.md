@@ -6,7 +6,7 @@
 
     babel 从编译到完成总共分三个阶段：解析、转换、生成。
 
-    ![](./image/babel.png)
+    ![](../image/babel.png)
       > 原谅我盗图。
 
       - 解析
