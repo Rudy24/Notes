@@ -1,0 +1,29 @@
+{
+  "name": "rdycli",
+  "version": "1.0.0",
+  "description": "create a new Vue project from a template",
+  "main": "index.js",
+  "bin": {
+    "rdycli": "./bin/rdycli.js",
+    "rdycli-add": "./bin/rdycli-add.js",
+    "rdycli-delete": "./bin/rdycli-delete.js",
+    "rdycli-list": "./bin/rdycli-list.js",
+    "rdycli-init": "./bin/rdycli-init.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "vue",
+    "vue-cli"
+  ],
+  "author": "songshaohua187@126.com",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "commander": "^5.1.0",
+    "download-git-repo": "^3.0.2",
+    "inquirer": "^7.3.2",
+    "ora": "^4.0.4"
+  }
+}
