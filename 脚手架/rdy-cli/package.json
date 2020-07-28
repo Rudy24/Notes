@@ -1,6 +1,6 @@
 {
   "name": "rdycli",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "create a new Vue project from a template",
   "main": "index.js",
   "bin": {
