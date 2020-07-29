@@ -11,7 +11,7 @@ exports.listen = function (server) {
   io.sockets.on('connection', function (socket) {
     guestNumber = assignGuestName(socket, guestNumber, nickNames, namesUserd)
     joinRoom(socket, 'Lobby')
-    handleNameChnageAttempts(socket, nickNames, namesUserd)
+    handleNameChangeAttempts(socket, nickNames, namesUserd)
     handleRoomJoining(socket)
 
     socket.on('rooms', function () {
@@ -37,7 +37,7 @@ function joinRoom (socket, room) {
   socket.join(room)
   currentRoom[socket.id] = room
   socket.emit('joinResult', { room: room })
-  socket.broadcase.to(room).emit('message', {
+  socket.broadcast.to(room).emit('message', {
     text: nickNames[socket.id] + ' has joined ' + room + '.'
   })
 
@@ -56,4 +56,59 @@ function joinRoom (socket, room) {
     usersInRoomSummary += '.'
     socket.emit('message', {text: usersInRoomSummary})
   }
+}
+
+function handleNameChangeAttempts (socket, nickNames, namesUsed) {
+  socket.on('nameAttempt', function (name) {
+    if (name.indexOf('Guest' === 0)) {
+      socket.emit('nameResult', {
+        success: false,
+        message: 'Names cannot begin with "Guest".'
+      })
+    } else {
+      if (namesUsed.indexOf(name) === -1) {
+        const previousName = nickNames[socket.id]
+        const previousNameIndex = namesUsed.indexOf(previousName)
+        namesUsed.push(name)
+        nickNames[socket.id] = name
+        delete namesUsed[previousNameIndex]
+        socket.emit('nameResult', {
+          success: true,
+          name
+        })
+
+        socket.broadcast.to(currentRoom[socket.id]).emit('message', {
+          text: previousName + ' is now known as ' + name + '.'
+        })
+      } else {
+        socket.emit('nameResult', {
+          success: false,
+          message: 'That name is already in use.'
+        })
+      }
+    }
+  })
+}
+
+function handleMessageBroadcasting(socket) {
+  socket.on('message', function (message) {
+    socket.broadcast.to(message.room).emit('message', {
+      text: nickNames[socket.id] + ': ' + message.text
+    })
+  })
+}
+
+function handleRoomJoining (socket) {
+  socket.on('join', function (room) {
+    socket.leave(currentRoom[socket.id])
+    joinRoom(socket, room.newRoom)
+  })
+}
+
+function handleClientDisconnection (socket) {
+  socket.on('disconnect', function () {
+    const nameIndex = nameIndex.indexOf(nickNames[socket.id])
+    delete namesUserd[nameIndex]
+    delete nickNames[socket.id]
+  })
 }
