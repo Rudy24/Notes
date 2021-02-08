@@ -1,5 +1,3 @@
-# 笔记
-
 ### 聊聊Vue的template编译
 
 1. Vue的template编辑 讲了什么？
@@ -30,7 +28,3 @@ function baseCompile (template, options) {
 
 3. Vue的template编辑 得到了什么？
 最终render函数回返回一个VNode节点，在_update的时候，经过patch与之前的VNode节点进行比较，得出差异后将差异渲染到真实的DOM上。
-
-
-### 参考资料  ##
-- [聊聊Vue的template编译](https://github.com/answershuto/learnVue/blob/master/docs/%E8%81%8A%E8%81%8AVue%E7%9A%84template%E7%BC%96%E8%AF%91.MarkDown#_c_v_s_q)
