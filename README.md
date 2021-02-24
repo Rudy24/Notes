@@ -40,5 +40,5 @@
 
 ### Vue 源码学习
 
-1. [依赖收集](https://github.com/Rudy24/Notes/blob/master/Vue%20%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/%E4%BE%9D%E8%B5%96%E6%94%B6%E9%9B%86.md)
-2. [聊聊 Vue 的 template 编译](https://github.com/Rudy24/Notes/blob/master/Vue%20%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/%E8%81%8A%E8%81%8AVue%E7%9A%84template%E7%BC%96%E8%AF%91.md)
+1. [依赖收集](https://github.com/Rudy24/Notes/blob/master/Vue%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/%E4%BE%9D%E8%B5%96%E6%94%B6%E9%9B%86.md)
+2. [聊聊 Vue 的 template 编译](https://github.com/Rudy24/Notes/blob/master/Vue%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/%E8%81%8A%E8%81%8AVue%E7%9A%84template%E7%BC%96%E8%AF%91.md)
