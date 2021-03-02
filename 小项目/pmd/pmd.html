@@ -1,0 +1,62 @@
+<html><head>
+    <meta charset="UTF-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="full-screen" content="yes">
+    <title>九宫格抽奖DEMO</title>
+    <style type="text/css">
+        #lottery{
+            width: 454px;
+            margin: 100px auto 0;
+        }
+
+        #lottery table td{
+            width: 150px;
+            height: 150px;
+            text-align: center;
+            vertical-align: middle;
+            background-color: #ccc;
+            font-size: 24px;
+            color: #333;
+        }
+
+        #lottery table td a{
+            width: 150px;
+            height: 150px;
+            line-height: 150px;
+            display: block;
+            text-decoration: none;
+        }
+
+        #lottery table td.active{
+            color: red;
+            background-color: yellow;
+        }
+    </style>
+
+    </head>
+<body>
+<div id="lottery">
+    <table>
+        <tbody><tr>
+            <td class="lottery-unit lottery-unit-0">1</td>
+            <td class="lottery-unit lottery-unit-1">2</td>
+            <td class="lottery-unit lottery-unit-2">3</td>
+        </tr>
+        <tr>
+            <td class="lottery-unit lottery-unit-7">8</td>
+            <td><a href="#" class="start">开始</a></td>
+            <td class="lottery-unit lottery-unit-3">4</td>
+        </tr>
+        <tr>
+            <td class="lottery-unit lottery-unit-6">7</td>
+            <td class="lottery-unit lottery-unit-5">6</td>
+            <td class="lottery-unit lottery-unit-4">5</td>
+        </tr>
+    </tbody></table>
+</div>
+</body>
+    <script src="http://act.juancdn.com/jpwebapp/common/js/zepto.min.js"></script>
+    <script type="text/javascript" src="pmd_logic.js"></script>
+    <script type="text/javascript" src="pmd_main.js"></script>
+</html>
