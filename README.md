@@ -50,12 +50,12 @@
 
 ### flutter widget 学习笔记
 
-1. [SafeArea 设置屏幕安全区域](https://github.com/Rudy24/Notes/blob/master/flutter_study/lib/safearea/safearea.md)
-2. [Expanded 填补可用的空间](https://github.com/Rudy24/Notes/blob/master/flutter_study/lib/expanded/expanded.md)
-3. [Wrap 自动换行神器](https://github.com/Rudy24/Notes/blob/master/flutter_study/lib/wrap/wrap.md)
-4. [AnimatedContainer 动画渐变效果](https://github.com/Rudy24/Notes/blob/master/flutter_study/lib/animatedContainer/animatedContainer.md)
-5. [Opacity 透明度](https://github.com/Rudy24/Notes/blob/master/flutter_study/lib/opacity/opacity.md)
-6. [fadeTransition 淡入淡出动画](https://github.com/Rudy24/Notes/blob/master/flutter_study/lib/fadeTransition/fadeTransition.md)
-7. [floatingActionButton 浮动按钮](https://github.com/Rudy24/Notes/blob/master/flutter_study/lib/floatingActionButton/floatingActionButton.md)
-flutter widget 一共有54个,demo已经全部写完了,但是部分没有注释, 感兴趣的可以自己去看看源码[flutter widget demo](https://github.com/Rudy24/Notes/tree/master/flutter_study/lib)
-> flutter 这块东西之前是单独一个仓库,后面直接移到Notes 仓库下面觉得更合适些
+1. [SafeArea 设置屏幕安全区域](https://github.com/Rudy24/Notes/blob/master/flutter/lib/safearea/safearea.md)
+2. [Expanded 填补可用的空间](https://github.com/Rudy24/Notes/blob/master/flutter/lib/expanded/expanded.md)
+3. [Wrap 自动换行神器](https://github.com/Rudy24/Notes/blob/master/flutter/lib/wrap/wrap.md)
+4. [AnimatedContainer 动画渐变效果](https://github.com/Rudy24/Notes/blob/master/flutter/lib/animatedContainer/animatedContainer.md)
+5. [Opacity 透明度](https://github.com/Rudy24/Notes/blob/master/flutter/lib/opacity/opacity.md)
+6. [fadeTransition 淡入淡出动画](https://github.com/Rudy24/Notes/blob/master/flutter/lib/fadeTransition/fadeTransition.md)
+7. [floatingActionButton 浮动按钮](https://github.com/Rudy24/Notes/blob/master/flutter/lib/floatingActionButton/floatingActionButton.md)
+> 1. flutter widget 一共有54个,demo已经全部写完了,但是部分没有注释, 感兴趣的可以自己去看看源码[flutter widget demo](https://github.com/Rudy24/Notes/tree/master/flutter/lib)
+> 2. flutter 这块东西之前是单独一个仓库,后面直接移到Notes 仓库下面觉得更合适些
