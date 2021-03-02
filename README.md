@@ -46,3 +46,14 @@
 
 ### iconfont
 1. [Iconfont介绍及优缺点](https://github.com/Rudy24/Notes/blob/master/Iconfont/Iconfont%E4%BB%8B%E7%BB%8D%E5%8F%8A%E4%BC%98%E7%BC%BA%E7%82%B9.md)
+
+
+### flutter widget 学习笔记
+
+1. [SafeArea 设置屏幕安全区域](https://github.com/Rudy24/flutter_study/blob/master/flutter_study_demo1/lib/safearea/safearea.md)
+2. [Expanded 填补可用的空间](https://github.com/Rudy24/flutter_study/blob/master/flutter_study_demo1/lib/expanded/expanded.md)
+3. [Wrap 自动换行神器](https://github.com/Rudy24/flutter_study/blob/master/flutter_study_demo1/lib/wrap/wrap.md)
+4. [AnimatedContainer 动画渐变效果](https://github.com/Rudy24/flutter_study/blob/master/flutter_study_demo1/lib/animatedContainer/animatedContainer.md)
+5. [Opacity 透明度](https://github.com/Rudy24/flutter_study/blob/master/flutter_study_demo1/lib/opacity/opacity.md)
+6. [fadeTransition 淡入淡出动画](https://github.com/Rudy24/flutter_study/blob/master/flutter_study_demo1/lib/fadeTransition/fadeTransition.md)
+7. [floatingActionButton 浮动按钮](https://github.com/Rudy24/flutter_study/blob/master/flutter_study_demo1/lib/floatingActionButton/floatingActionButton.md)
