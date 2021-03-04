@@ -1,6 +1,6 @@
 ### Object.create
 
-1. Object.create 的作用？
+#### Object.create 的作用？
    `Object.create()`方法创建一个新对象，使用现有的对象来提供新创建的对象的**proto**。 说白了就是基于现有对象的**proto**创建一个对象。
    > Object.create(proto, [propertiesObject])
 
@@ -28,7 +28,8 @@ const obj = Object.create(Object.prototype, {
 });
 ```
 
-![](Object.create.png) 2. Object.create 和 {...}的区别？
+![](Object.create.png) 
+#### Object.create 和 {...}的区别？
 
 ```javascript
 const o = {};
@@ -62,7 +63,7 @@ const o = Object.create({});
 
 ![](Object.create5.png)
 
-3. 使用场景？
+#### 使用场景？
   - 创建一个纯净的对象`Object.create(null)`,自己可以定义想要的方法，如`toString` 等
   - 复制一份目标对象的方法,而后在修改自身对象时避免污染源对象`Object.create(Array.prototype)`
-4. 如何实现一个 Object.create
+#### 如何实现一个 Object.create
