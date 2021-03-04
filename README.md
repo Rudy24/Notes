@@ -16,6 +16,7 @@
 8. [字符串如何比较大小](https://github.com/Rudy24/Notes/blob/master/JavaScript/compireString.md)
 9. [class 类](https://github.com/Rudy24/Notes/blob/master/JavaScript/class.md)
 10. [构造函数及构造函数与普通函数的区别](https://github.com/Rudy24/Notes/blob/master/JavaScript/构造函数.md)
+11. [详解Object.create](https://github.com/Rudy24/Notes/blob/master/JavaScript/Object/create/Object.create.md)
 
 ### Http
 
