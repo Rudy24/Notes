@@ -1,9 +1,9 @@
 1. 概念 <br/>
-#Proxy 可以理解成，在目标对象之前架设一层拦截，外界对该对象的访问，都必须先通过这层拦截，因此提供了一种机制，可以对外界的访问进行过滤和改写。
+Proxy 可以理解成，在目标对象之前架设一层拦截，外界对该对象的访问，都必须先通过这层拦截，因此提供了一种机制，可以对外界的访问进行过滤和改写。
 
 ```javascript
 
-var obj = new Proxy({}, {
+const obj = new Proxy({}, {
   get: function (target, key, receiver) {
     console.log(`getting ${key}!`);
     return Reflect.get(target, key, receiver);
@@ -16,12 +16,16 @@ var obj = new Proxy({}, {
 
 ```
 上面代码对一个空对象架设了一层拦截，重定义了属性的读取(get) 和设置(set)行为。
+```javascript
+
 obj.count = 1;
 // setting count!
 ++obj.count;
 // getting count!
 // setting count!
 // 2
+
+```
 
 上面代码说明，Proxy 实际上重载了点运算符，即用自己的定义覆盖了语言的原始定义
 
@@ -89,7 +93,7 @@ fproxy.prototype === Object.prototype // true
 fproxy.foo === "Hello, foo" // true
 
 ```
-#下面是 Proxy 支持的拦截操作一览，一共 13 种。
+下面是 Proxy 支持的拦截操作一览，一共 13 种。
 
 
 1. get(target, propKey, receiver)：拦截对象属性的读取，比如proxy.foo和proxy['foo']。
@@ -109,7 +113,7 @@ fproxy.foo === "Hello, foo" // true
 
 2. Proxy 实例的方法 <br/>
 
-#get()
+####get()
 `get`方法用于拦截某个属性的读取操作，可以接受三个参数，依次为目标对象、属性名和proxy实例本身，其中最后一个参数可选。
 
 ```javascript
