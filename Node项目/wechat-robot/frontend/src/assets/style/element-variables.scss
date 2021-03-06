@@ -1,0 +1,26 @@
+
+.sidebar-content .el-menu{
+    border-right: none;
+}
+.el-menu-vertical-demo{
+    width: 100%;
+}
+
+.sidebar-content .el-submenu [class^=el-icon-]{
+    font-size: 20px;
+}
+.el-submenu__title .el-submenu__icon-arrow{
+    font-size: 14px;
+    color: #fff;
+}
+.el-submenu .el-menu-item{
+    padding-left: 48px !important;
+}
+.el-dropdown .el-dropdown-link{
+    font-size: 14px;
+    box-sizing: border-box;
+    background-color: transparent;
+    border-color:  transparent;
+    color: #fff;
+    padding: 0 18px;
+}
