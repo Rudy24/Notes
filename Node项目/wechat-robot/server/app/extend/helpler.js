@@ -60,7 +60,6 @@ module.exports = {
         this.error(401, 200, "该账号已在其他地方登陆,请重新登录")
       }
     }
-
     return backResult
   },
   // MD5对密码和密钥进行混合双重加密
@@ -68,5 +67,13 @@ module.exports = {
     const hash1 = await crypto.createHash('md5').update(password).digest('hex')
     const hash2 = await crypto.createHash('md5').update(hash1 + key).digest('hex')
     return hash2
+  },
+  // 处理失败响应
+  error (status, code, message) {
+    this.ctx.body = {
+      code,
+      message,
+    }
+    this.ctx.status = status
   }
 }
