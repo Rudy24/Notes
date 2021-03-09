@@ -47,17 +47,17 @@ class UserService extends Service {
     let res = []
     let count = 0
     let skip = ((Number(currentPage)) - 1) * Number(pageSize || 10)
-    if(isPaging) {
-      if(search) {
-        res = await this.ctx.model.User.find({mobile: { $regex: search } }).populate('role').skip(skip).limit(Number(pageSize)).sort({ createdAt: -1 }).exec()
+    if (isPaging) {
+      if (search) {
+        res = await this.ctx.model.User.find({ mobile: { $regex: search } }).populate('role').skip(skip).limit(Number(pageSize)).sort({ createdAt: -1 }).exec()
         count = res.length
       } else {
         res = await this.ctx.model.User.find({}).populate('role').skip(skip).limit(Number(pageSize)).sort({ createdAt: -1 }).exec()
         count = await this.ctx.model.User.count({}).exec()
       }
     } else {
-      if(search) {
-        res = await this.ctx.model.User.find({mobile: { $regex: search } }).populate('role').sort({ createdAt: -1 }).exec()
+      if (search) {
+        res = await this.ctx.model.User.find({ mobile: { $regex: search } }).populate('role').sort({ createdAt: -1 }).exec()
         count = res.length
       } else {
         res = await this.ctx.model.User.find({}).populate('role').sort({ createdAt: -1 }).exec()
@@ -65,7 +65,7 @@ class UserService extends Service {
       }
     }
     // 整理数据源 -> Ant Design Pro
-    let data = res.map((e,i) => {
+    let data = res.map((e, i) => {
       const jsonObject = Object.assign({}, e._doc)
       jsonObject.key = i
       jsonObject.password = 'Are you ok?'
@@ -74,8 +74,8 @@ class UserService extends Service {
     })
 
     return { count: count, list: data, pageSize: Number(pageSize), currentPage: Number(currentPage) }
-  }  
-  
+  }
+
 
   async removes(payload) {
     return this.ctx.model.User.remove({ _id: { $in: payload } })
@@ -85,7 +85,7 @@ class UserService extends Service {
   async findByMobile(mobile) {
     return this.ctx.model.User.findOne({ mobile: mobile })
   }
-  
+
   async find(id) {
     return this.ctx.model.User.findById(id)
   }
@@ -94,7 +94,7 @@ class UserService extends Service {
     return this.ctx.model.User.findByIdAndUpdate(id, values)
   }
 
-  
+
 
 }
 

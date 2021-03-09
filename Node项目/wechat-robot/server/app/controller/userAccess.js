@@ -22,7 +22,7 @@ class UserAccessController extends Controller {
 
     this.UserUpdateTransfer = {
       mobile: { type: 'string', required: true, allowEmpty: false },
-      realName: {type: 'string', required: true, allowEmpty: false, format: /^[\u2E80-\u9FFF]{2,6}$/}
+      realName: { type: 'string', required: true, allowEmpty: false, format: /^[\u2E80-\u9FFF]{2,6}$/ }
     }
   }
 
@@ -33,11 +33,10 @@ class UserAccessController extends Controller {
     ctx.validate(this.UserLoginTransfer)
     // 组装参数
     const payload = ctx.request.body || {}
-    console.log('payload', payload)
     // 调用 Service 进行业务处理
     const res = await service.userAccess.login(payload)
     // 设置响应内容和响应状态码
-    ctx.helper.success({ctx, res})
+    ctx.helper.success({ ctx, res })
   }
 
   // 用户登出
@@ -46,9 +45,9 @@ class UserAccessController extends Controller {
     // 调用 Service 进行业务处理
     await service.userAccess.logout()
     // 设置响应内容和响应状态码
-    ctx.helper.success({ctx})
+    ctx.helper.success({ ctx })
   }
-  
+
   // 修改密码
   async resetPsw() {
     const { ctx, service } = this
@@ -59,7 +58,7 @@ class UserAccessController extends Controller {
     // 调用 Service 进行业务处理
     await service.userAccess.resetPsw(payload)
     // 设置响应内容和响应状态码
-    ctx.helper.success({ctx})
+    ctx.helper.success({ ctx })
   }
 
   // 获取用户信息
@@ -67,12 +66,12 @@ class UserAccessController extends Controller {
     const { ctx, service } = this
     const res = await service.userAccess.current()
     // 设置响应内容和响应状态码
-    ctx.helper.success({ctx, res})
+    ctx.helper.success({ ctx, res })
   }
 
   // 修改基础信息
   async resetSelf() {
-    const {ctx, service} = this
+    const { ctx, service } = this
     // 校验参数
     ctx.validate(this.UserUpdateTransfer)
     // 组装参数
@@ -80,7 +79,7 @@ class UserAccessController extends Controller {
     // 调用Service 进行业务处理
     await service.userAccess.resetSelf(payload)
     // 设置响应内容和响应状态码
-    ctx.helper.success({ctx})
+    ctx.helper.success({ ctx })
   }
 
   // 修改头像
@@ -104,7 +103,7 @@ class UserAccessController extends Controller {
       throw err
     }
     // 设置响应内容和响应状态码
-    ctx.helper.success({ctx})
+    ctx.helper.success({ ctx })
   }
 }
 

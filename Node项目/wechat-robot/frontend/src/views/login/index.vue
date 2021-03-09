@@ -33,11 +33,16 @@
 					name="password"
 					tabindex="2"
 					auto-complete="on"
-					@keyup.enter="handleLogin"
 				/>
-				<!-- <span class="show-pwd" @click="showPwd">
-          <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
-        </span> -->
+			</el-form-item>
+			<el-form-item prop="realName" v-show="!isReg">
+				<el-input
+					v-model.trim="loginForm.realName"
+					placeholder="请输入真实姓名"
+					name="realName"
+					tabindex="2"
+					auto-complete="on"
+				/>
 			</el-form-item>
 
 			<el-button
@@ -45,7 +50,10 @@
 				type="primary"
 				style="width: 100%; margin-bottom: 30px"
 				@click.prevent="handleLogin"
-				>登录</el-button
+				>{{ isReg ? '登陆' : '注册' }}</el-button
+			>
+			<el-button @click="isReg = !isReg"
+				>切换{{ isReg ? '注册' : '登陆' }}</el-button
 			>
 		</el-form>
 	</div>
@@ -55,7 +63,7 @@
 import { defineComponent, ref, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
-import { Login } from '@/api/user'
+import { Create, Login } from '@/api/user'
 import { LoginRequestProps } from '@/api/requestProps'
 type passwordTypeProps = 'password' | 'text'
 type pwdOrUname = string | number
@@ -90,8 +98,10 @@ export default defineComponent({
 		}
 		const loginForm: LoginRequestProps = reactive({
 			mobile: '',
-			password: ''
+			password: '',
+			realName: ''
 		})
+		const isReg = ref<boolean>(false)
 		const loginRules = {
 			mobile: [{ required: true, trigger: 'blur', validator: validatemobile }],
 			password: [
@@ -101,12 +111,21 @@ export default defineComponent({
 		const handleLogin = (): void => {
 			;(loginFormRef.value as any).validate(async (valid: boolean) => {
 				if (valid) {
-					const { mobile, password } = loginForm
+					const { mobile, password, realName } = loginForm
+					console.log(11, realName)
+					const request = isReg ? Login : Create
+					const params = {
+						mobile,
+						password,
+						realName
+					}
+
+					if (!isReg) delete params.realName
 					try {
-						const { data } = await Login({ mobile, password })
+						const { data } = await request(params)
 						console.log('res', data)
-						store.commit('user/setToken', 'test')
-						router.push('/')
+						// store.commit('user/setToken', 'test')
+						// router.push('/')
 					} catch (e) {}
 				}
 			})
@@ -120,6 +139,7 @@ export default defineComponent({
 			}
 		}
 		return {
+			isReg,
 			loading,
 			loginRules,
 			loginForm,
