@@ -83,9 +83,9 @@ class UserService extends Service {
 
   // Commons======================================================================================================>
   async findByMobile(mobile) {
-    return this.ctx.model.User.findOne({mobile: mobile})
+    return this.ctx.model.User.findOne({ mobile: mobile })
   }
-
+  
   async find(id) {
     return this.ctx.model.User.findById(id)
   }

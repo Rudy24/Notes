@@ -10,8 +10,8 @@ import request from '@/utils/request'
 import { LoginRequestProps } from './requestProps'
 export function Login (params: LoginRequestProps) {
   return request({
-    url: '/login',
-    method: 'GET',
-    params
+    url: '/api/user/access/login',
+    method: 'POST',
+    data: params
   })
 }

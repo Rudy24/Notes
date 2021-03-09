@@ -5,10 +5,17 @@ module.exports = {
   lintOnSave: process.env.NODE_ENV === 'development',
   productionSourceMap: false,
   devServer: {
-    open: true
-    // proxy: {
-
-    // }
+    open: true,
+    proxy: {
+      '/api': {
+        target: 'http://127.0.0.1:7001', // 本地环境
+        ws: true,
+        changeOrigin: true
+        // pathRewrite: {
+        //   '^/api': '/'
+        // }
+      }
+    }
   },
   css: {
     extract: true

@@ -11,12 +11,12 @@
 			<div class="title-container">
 				<h3 class="title">登录</h3>
 			</div>
-			<el-form-item prop="username">
+			<el-form-item prop="mobile">
 				<el-input
-					ref="username"
-					v-model.trim="loginForm.username"
-					placeholder="请输入用户名"
-					name="username"
+					ref="mobile"
+					v-model.trim="loginForm.mobile"
+					placeholder="请输入手机号码"
+					name="mobile"
 					type="text"
 					tabindex="1"
 					auto-complete="on"
@@ -56,12 +56,9 @@ import { defineComponent, ref, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 import { Login } from '@/api/user'
+import { LoginRequestProps } from '@/api/requestProps'
 type passwordTypeProps = 'password' | 'text'
 type pwdOrUname = string | number
-interface LoginFormProps {
-	username: string
-	password: string | number
-}
 export default defineComponent({
 	name: 'login',
 	setup() {
@@ -70,7 +67,7 @@ export default defineComponent({
 		const loading = ref<boolean>(false)
 		const loginFormRef = ref<HTMLElement | null>(null)
 		const passwordType = ref<passwordTypeProps>('password')
-		const validateUsername = (
+		const validatemobile = (
 			rule: any,
 			value: pwdOrUname,
 			callback: Function
@@ -91,14 +88,12 @@ export default defineComponent({
 			if (!value) callback(new Error('密码不能为空'))
 			callback()
 		}
-		const loginForm: LoginFormProps = reactive({
-			username: '',
+		const loginForm: LoginRequestProps = reactive({
+			mobile: '',
 			password: ''
 		})
 		const loginRules = {
-			username: [
-				{ required: true, trigger: 'blur', validator: validateUsername }
-			],
+			mobile: [{ required: true, trigger: 'blur', validator: validatemobile }],
 			password: [
 				{ required: true, trigger: 'blur', validator: validatePassword }
 			]
@@ -106,14 +101,13 @@ export default defineComponent({
 		const handleLogin = (): void => {
 			;(loginFormRef.value as any).validate(async (valid: boolean) => {
 				if (valid) {
-					const { username, password } = loginForm
-					if (username === 'admin' && password.toString() === '123456') {
+					const { mobile, password } = loginForm
+					try {
+						const { data } = await Login({ mobile, password })
+						console.log('res', data)
 						store.commit('user/setToken', 'test')
 						router.push('/')
-					} else {
-						const res = await Login(loginForm)
-						console.log('res-data:', res)
-					}
+					} catch (e) {}
 				}
 			})
 		}

@@ -12,3 +12,7 @@ exports.success = ({ ctx, res = null, msg = '请求成功' })=> {
   }
   ctx.status = 200
 }
+// 处理失败
+exports.error = ({ ctx, msg = '请求失败'}) => {
+  ctx.throw(1, msg)
+}

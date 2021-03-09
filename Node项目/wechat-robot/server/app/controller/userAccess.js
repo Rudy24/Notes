@@ -7,7 +7,6 @@ const download = require('image-downloader')
 const Controller = require('egg').Controller
 
 class UserAccessController extends Controller {
-
   constructor(ctx) {
     super(ctx)
 
@@ -34,6 +33,7 @@ class UserAccessController extends Controller {
     ctx.validate(this.UserLoginTransfer)
     // 组装参数
     const payload = ctx.request.body || {}
+    console.log('payload', payload)
     // 调用 Service 进行业务处理
     const res = await service.userAccess.login(payload)
     // 设置响应内容和响应状态码

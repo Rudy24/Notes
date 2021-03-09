@@ -3,16 +3,16 @@
 const Service = require('egg').Service
 
 class UserAccessService extends Service {
-
   async login(payload) {
     const { ctx, service } = this
     const user = await service.user.findByMobile(payload.mobile)
-    if(!user){
-      ctx.throw(404, 'user not found')
+    console.log('user', user)
+    if (!user) {
+      ctx.helper.error({ctx, msg: '改账号不存在'})
     }
-    let verifyPsw = await ctx.compare(payload.password, user.password)
-    if(!verifyPsw) {
-      ctx.throw(404, 'user password is error')
+    // let verifyPsw = await ctx.compare(payload.password, user.password)
+    if(payload.password !== user.password) {
+      ctx.helper.error({ctx, msg: '账号密码不正确'})
     }
     // 生成Token令牌
     return { token: await service.actionToken.apply(user._id) }

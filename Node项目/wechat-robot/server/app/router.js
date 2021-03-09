@@ -5,15 +5,10 @@
 module.exports = app => {
   const { router, controller } = app
   router.get('/', controller.home.index)
-  // role
-  // router.post('/api/role', controller.role.create)
-  // router.delete('/api/role/:id', controller.role.destroy)
-  // router.put('/api/role/:id', controller.role.update)
-  // router.get('/api/role/:id', controller.role.show)
-  // router.get('/api/role', controller.role.index)
+
   router.delete('/api/role', controller.role.removes)
   router.resources('role', '/api/role', controller.role)
-
+  
   // userAccess
   router.post('/api/user/access/login', controller.userAccess.login)
   router.get('/api/user/access/current', app.jwt, controller.userAccess.current)

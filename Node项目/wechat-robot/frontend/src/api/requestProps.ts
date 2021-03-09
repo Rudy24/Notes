@@ -7,6 +7,6 @@
  * @FilePath: \vehicle-mp\src\api\requestProps.ts
  */
 export interface LoginRequestProps {
-    username: string;
-    password: string | number;
+    mobile: string;
+    password: string;
 }

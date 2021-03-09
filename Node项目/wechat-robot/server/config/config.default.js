@@ -28,20 +28,24 @@ module.exports = appInfo => {
     saltRounds: 10 // default 10
   }
 
-  // config.mongoose = {
-  //   url: 'mongodb://127.0.0.1:27017/egg_x',
-  //   options: {
-  //     useMongoClient: true,
-  //     autoReconnect: true,
-  //     reconnectTries: Number.MAX_VALUE,
-  //     bufferMaxEntries: 0,
-  //   },
-  // }
+  config.mongoose = {
+    url: 'mongodb://127.0.0.1:27017/egg_x',
+    options: {
+      useMongoClient: true,
+      autoReconnect: true,
+      reconnectTries: Number.MAX_VALUE,
+      bufferMaxEntries: 0,
+    },
+  }
 
   config.jwt = {
     secret: 'Great4-M',
     enable: true, // default is false
     match: '/jwt', // optional
+  }
+
+  config.cors = {
+    origin: '*'
   }
 
   // config.redis = {
