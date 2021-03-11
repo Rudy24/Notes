@@ -8,7 +8,7 @@ class RoleService extends Service {
 
   // destroy======================================================================================================>  
   async destroy(_id) {
-    const { ctx, service } = this
+    const { ctx } = this
     const role = await ctx.service.role.find(_id)
     if (!role) {
       ctx.throw(404, 'role not found')
@@ -28,11 +28,12 @@ class RoleService extends Service {
 
   // show======================================================================================================>
   async show(_id) {
+    // 查找用户角色
     const role = await this.ctx.service.role.find(_id)
     if (!role) {
       this.ctx.throw(404, 'role not found')
     }
-    return this.ctx.model.Role.findById(_id)
+    return await this.ctx.model.Role.findById(_id)
   }
 
   // index======================================================================================================>
@@ -76,9 +77,8 @@ class RoleService extends Service {
 
   // Commons======================================================================================================>
   async find(id) {
-    return this.ctx.model.Role.findById(id)
+    return await this.ctx.model.Role.findById(id)
   }
-
 }
 
 module.exports = RoleService

@@ -1,6 +1,6 @@
 module.exports = app => {
   const mongoose = app.mongoose
-  
+
   const RoleSchema = new mongoose.Schema({
     name: { type: String, unique: true, required: true },
     access: { type: String, required: true, default: 'user' },

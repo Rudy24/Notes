@@ -4,17 +4,20 @@ class UserService extends Service {
   // create======================================================================================================>
   async create(payload) {
     const { ctx, service } = this
+    // 查找该角色,并返回该角色
     const role = await service.role.show(payload.role)
     if (!role) {
       ctx.throw(404, 'role is not found')
     }
+    // genHash 加密
+    // ctx.compare 解密
     payload.password = await this.ctx.genHash(payload.password)
-    return ctx.model.User.create(payload)
+    return await ctx.model.User.create(payload)
   }
 
   // destroy======================================================================================================>  
   async destroy(_id) {
-    const { ctx, service } = this
+    const { ctx } = this
     const user = await ctx.service.user.find(_id)
     if (!user) {
       ctx.throw(404, 'user not found')
@@ -34,10 +37,12 @@ class UserService extends Service {
 
   // show======================================================================================================>
   async show(_id) {
+    // 查找用户id
     const user = await this.ctx.service.user.find(_id)
     if (!user) {
       this.ctx.throw(404, 'user not found')
     }
+    // 查找用户id，返回关联role的数据
     return this.ctx.model.User.findById(_id).populate('role')
   }
 
@@ -76,7 +81,6 @@ class UserService extends Service {
     return { count: count, list: data, pageSize: Number(pageSize), currentPage: Number(currentPage) }
   }
 
-
   async removes(payload) {
     return this.ctx.model.User.remove({ _id: { $in: payload } })
   }
@@ -85,7 +89,7 @@ class UserService extends Service {
   async findByMobile(mobile) {
     return this.ctx.model.User.findOne({ mobile: mobile })
   }
-
+  // 查找用户
   async find(id) {
     return this.ctx.model.User.findById(id)
   }
@@ -93,9 +97,6 @@ class UserService extends Service {
   async findByIdAndUpdate(id, values) {
     return this.ctx.model.User.findByIdAndUpdate(id, values)
   }
-
-
-
 }
 
 

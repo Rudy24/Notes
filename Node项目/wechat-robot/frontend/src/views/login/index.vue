@@ -101,7 +101,7 @@ export default defineComponent({
 			password: '',
 			realName: ''
 		})
-		const isReg = ref<boolean>(false)
+		let isReg = ref<boolean>(false)
 		const loginRules = {
 			mobile: [{ required: true, trigger: 'blur', validator: validatemobile }],
 			password: [
@@ -112,18 +112,19 @@ export default defineComponent({
 			;(loginFormRef.value as any).validate(async (valid: boolean) => {
 				if (valid) {
 					const { mobile, password, realName } = loginForm
-					console.log(11, realName)
-					const request = isReg ? Login : Create
+					const request = !isReg ? Login : Create
 					const params = {
 						mobile,
 						password,
-						realName
+						realName,
+						user: 'user'
 					}
 
 					if (!isReg) delete params.realName
 					try {
 						const { data } = await request(params)
 						console.log('res', data)
+						// if (isReg) isReg = isReg
 						// store.commit('user/setToken', 'test')
 						// router.push('/')
 					} catch (e) {}
