@@ -5,14 +5,14 @@ class UserController extends Controller {
     super(ctx)
 
     this.UserCreateTransfer = {
-      mobile: {type: 'string', required: true, allowEmpty: false, format: /^[0-9]{11}$/},
-      password: {type: 'password', required: true, allowEmpty: false, min: 6},
-      realName: {type: 'string', required: true, allowEmpty: false, format: /^[\u2E80-\u9FFF]{2,6}$/}
+      mobile: { type: 'string', required: true, allowEmpty: false, format: /^[0-9]{11}$/ },
+      password: { type: 'password', required: true, allowEmpty: false, min: 6 },
+      realName: { type: 'string', required: true, allowEmpty: false, format: /^[\u2E80-\u9FFF]{2,6}$/ }
     }
 
     this.UserUpdateTransfer = {
       mobile: { type: 'string', required: true, allowEmpty: false },
-      realName: {type: 'string', required: true, allowEmpty: false, format: /^[\u2E80-\u9FFF]{2,6}$/}
+      realName: { type: 'string', required: true, allowEmpty: false, format: /^[\u2E80-\u9FFF]{2,6}$/ }
     }
   }
 
@@ -26,7 +26,7 @@ class UserController extends Controller {
     // 调用 Service 进行业务处理
     const res = await service.user.create(payload)
     // 设置响应内容和响应状态码
-    ctx.helper.success({ctx, res})
+    ctx.helper.success({ ctx, res })
   }
 
   // 删除单个用户
@@ -37,7 +37,7 @@ class UserController extends Controller {
     // 调用 Service 进行业务处理
     await service.user.destroy(id)
     // 设置响应内容和响应状态码
-    ctx.helper.success({ctx})
+    ctx.helper.success({ ctx })
   }
 
   // 修改用户
@@ -51,9 +51,9 @@ class UserController extends Controller {
     // 调用 Service 进行业务处理
     await service.user.update(id, payload)
     // 设置响应内容和响应状态码
-    ctx.helper.success({ctx})
+    ctx.helper.success({ ctx })
   }
- 
+
   // 获取单个用户
   async show() {
     const { ctx, service } = this
@@ -62,7 +62,7 @@ class UserController extends Controller {
     // 调用 Service 进行业务处理
     const res = await service.user.show(id)
     // 设置响应内容和响应状态码
-    ctx.helper.success({ctx, res})
+    ctx.helper.success({ ctx, res })
   }
 
   // 获取所有用户(分页/模糊)
@@ -73,7 +73,7 @@ class UserController extends Controller {
     // 调用 Service 进行业务处理
     const res = await service.user.index(payload)
     // 设置响应内容和响应状态码
-    ctx.helper.success({ctx, res})
+    ctx.helper.success({ ctx, res })
   }
 
   // 删除所选用户(条件id[])
@@ -86,7 +86,7 @@ class UserController extends Controller {
     // 调用 Service 进行业务处理
     const result = await service.user.removes(payload)
     // 设置响应内容和响应状态码
-    ctx.helper.success({ctx})
+    ctx.helper.success({ ctx })
   }
 
 }

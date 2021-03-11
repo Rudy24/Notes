@@ -8,9 +8,10 @@ module.exports = app => {
 
   router.delete('/api/role', controller.role.removes)
   router.resources('role', '/api/role', controller.role)
-  
+
   // userAccess
   router.post('/api/user/access/login', controller.userAccess.login)
+  router.post('/api/user/access/create', controller.user.create)
   router.get('/api/user/access/current', app.jwt, controller.userAccess.current)
   router.get('/api/user/access/logout', controller.userAccess.logout)
   router.put('/api/user/access/resetPsw', app.jwt, controller.userAccess.resetPsw)

@@ -8,10 +8,17 @@
  */
 import request from '@/utils/request'
 import { LoginRequestProps } from './requestProps'
-export function Login (params: LoginRequestProps) {
-  return request({
-    url: '/api/user/access/login',
-    method: 'POST',
-    data: params
-  })
+export function Login(params: LoginRequestProps) {
+	return request({
+		url: '/api/user/access/login',
+		method: 'POST',
+		data: params
+	})
+}
+export function Create(params: LoginRequestProps) {
+	return request({
+		url: '/api/user/access/create',
+		method: 'POST',
+		data: params
+	})
 }
