@@ -4,7 +4,7 @@
 
 “对我来说，博客首先是一种知识管理工具，其次才是传播工具。我的技术文章，主要用来整理我还不懂的知识。我只写那些我还没有完全掌握的东西，那些我精通的东西，往往没有动力写。炫耀从来不是我的动机，好奇才是。" ---阮一峰"
 
-## JavaScript
+### JavaScript
 
 1. [Promise 学习](https://github.com/Rudy24/Notes/blob/master/JavaScript/Promise.md)
 2. [正则表达式 学习](https://github.com/Rudy24/Notes/blob/master/JavaScript/%E6%AD%A3%E5%88%99.md)
@@ -17,6 +17,11 @@
 9. [class 类](https://github.com/Rudy24/Notes/blob/master/JavaScript/class.md)
 10. [构造函数及构造函数与普通函数的区别](https://github.com/Rudy24/Notes/blob/master/JavaScript/构造函数.md)
 11. [详解Object.create](https://github.com/Rudy24/Notes/blob/master/JavaScript/Object/create/Object.create.md)
+
+
+### Polyfill
+1. [new](https://github.com/Rudy24/Notes/blob/master/JavaScript/Promise.md)
+1. [instanceof](https://github.com/Rudy24/Notes/blob/master/JavaScript/Promise.md)
 
 ### Http
 
@@ -50,7 +55,6 @@
 
 
 ### flutter widget 学习笔记
-
 1. [SafeArea 设置屏幕安全区域](https://github.com/Rudy24/Notes/blob/master/flutter/lib/safearea/safearea.md)
 2. [Expanded 填补可用的空间](https://github.com/Rudy24/Notes/blob/master/flutter/lib/expanded/expanded.md)
 3. [Wrap 自动换行神器](https://github.com/Rudy24/Notes/blob/master/flutter/lib/wrap/wrap.md)
