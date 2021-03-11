@@ -21,7 +21,7 @@
 
 ### Polyfill
 1. [new](https://github.com/Rudy24/Notes/blob/master/polyfill/new.md)
-1. [instanceof](https://github.com/Rudy24/Notes/blob/master/polyfill/instanceof.md)
+2. [instanceof](https://github.com/Rudy24/Notes/blob/master/polyfill/instanceof.md)
 
 ### Http
 
