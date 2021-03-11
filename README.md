@@ -20,8 +20,8 @@
 
 
 ### Polyfill
-1. [new](https://github.com/Rudy24/Notes/blob/master/JavaScript/Promise.md)
-1. [instanceof](https://github.com/Rudy24/Notes/blob/master/JavaScript/Promise.md)
+1. [new](https://github.com/Rudy24/Notes/blob/master/polyfill/new.md)
+1. [instanceof](https://github.com/Rudy24/Notes/blob/master/polyfill/instanceof.md)
 
 ### Http
 

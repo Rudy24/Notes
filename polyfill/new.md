@@ -6,6 +6,7 @@
 3. 绑定this
 4. 返回新对象
 
+在调用 `new` 的过程中会发生以上四件事情，因此可以自己来实现一个`new`
 ```javascript
 
 function create () {
