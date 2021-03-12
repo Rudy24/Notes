@@ -29,6 +29,18 @@ class UserController extends Controller {
     ctx.helper.success({ ctx, res })
   }
 
+  async register() {
+    const { ctx, service } = this
+    // 校验参数
+    ctx.validate(this.UserCreateTransfer)
+    // 组装参数
+    const payload = ctx.request.body || {}
+    // 调用Service 进行业务处理
+    const res = await service.user.register(payload)
+    // 设置响应内容和响应状态码
+    ctx.helper.success({ ctx, res })
+  }
+
   // 删除单个用户
   async destroy() {
     const { ctx, service } = this

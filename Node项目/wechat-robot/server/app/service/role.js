@@ -27,13 +27,18 @@ class RoleService extends Service {
   }
 
   // show======================================================================================================>
-  async show(_id) {
+  async show(role) {
     // 查找用户角色
-    const role = await this.ctx.service.role.find(_id)
-    if (!role) {
-      this.ctx.throw(404, 'role not found')
-    }
-    return await this.ctx.model.Role.findById(_id)
+    // const role = await this.ctx.service.role.find(_id)
+    // if (!role) {
+    //   this.ctx.throw(404, 'role not found')
+    // }
+    // return await this.ctx.model.Role.findById(_id)
+    const user = await this.ctx.model.Role.findOne({
+      where: {
+        role
+      }
+    })
   }
 
   // index======================================================================================================>

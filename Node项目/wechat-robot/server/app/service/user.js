@@ -2,17 +2,30 @@ const Service = require('egg').Service
 
 class UserService extends Service {
   // create======================================================================================================>
-  async create(payload) {
-    const { ctx, service } = this
-    // 查找该角色,并返回该角色
-    const role = await service.role.show(payload.role)
-    if (!role) {
-      ctx.throw(404, 'role is not found')
+  // async create(payload) {
+  //   const { ctx, service } = this
+  //   const user = await service.user.register(payload)
+  //   if (!user) {
+  //     // ctx.throw(404, 'role is not found')
+  //     ctx.helper.error({ ctx, msg: '用户已存在' })
+  //   }
+  //   // genHash 加密
+  //   // ctx.compare 解密
+  //   payload.password = await this.ctx.genHash(payload.password)
+  //   return await ctx.model.User.create(payload)
+  // }
+
+  // 注册
+  async register(payload) {
+    const { ctx } = this
+    let { realName, mobile, password } = payload
+    const res = await ctx.model.User.findOne({ mobile })
+    console.log(res, 'res')
+    if (res) {
+      ctx.helper.error({ ctx, msg: '该账号已存在' })
     }
-    // genHash 加密
-    // ctx.compare 解密
-    payload.password = await this.ctx.genHash(payload.password)
-    return await ctx.model.User.create(payload)
+    password = await ctx.genHash(password)
+    return await ctx.model.User.create({ realName, mobile, password })
   }
 
   // destroy======================================================================================================>  

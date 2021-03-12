@@ -15,9 +15,9 @@ export function Login(params: LoginRequestProps) {
 		data: params
 	})
 }
-export function Create(params: LoginRequestProps) {
+export function Register(params: LoginRequestProps) {
 	return request({
-		url: '/api/user/access/create',
+		url: '/api/user/access/register',
 		method: 'POST',
 		data: params
 	})

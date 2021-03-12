@@ -55,6 +55,7 @@
 			<el-button @click="isReg = !isReg"
 				>切换{{ isReg ? '注册' : '登陆' }}</el-button
 			>
+			{{ isReg }}
 		</el-form>
 	</div>
 </template>
@@ -63,8 +64,9 @@
 import { defineComponent, ref, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
-import { Create, Login } from '@/api/user'
+import { Register, Login } from '@/api/user'
 import { LoginRequestProps } from '@/api/requestProps'
+import { use } from 'echarts'
 type passwordTypeProps = 'password' | 'text'
 type pwdOrUname = string | number
 export default defineComponent({
@@ -112,21 +114,25 @@ export default defineComponent({
 			;(loginFormRef.value as any).validate(async (valid: boolean) => {
 				if (valid) {
 					const { mobile, password, realName } = loginForm
-					const request = !isReg ? Login : Create
+					console.log(isReg, 'isReg')
+					const request = isReg.value ? Login : Register
 					const params = {
 						mobile,
 						password,
-						realName,
-						user: 'user'
+						realName
 					}
 
 					if (!isReg) delete params.realName
 					try {
 						const { data } = await request(params)
-						console.log('res', data)
-						// if (isReg) isReg = isReg
-						// store.commit('user/setToken', 'test')
-						// router.push('/')
+						console.log(data, 'res')
+						if (isReg.value) {
+							store.commit('user/setToken', data.token)
+							store.commit('user/setUserInfo', data.userInfo)
+							router.push('/')
+						} else {
+							isReg.value = !isReg.value
+						}
 					} catch (e) {}
 				}
 			})

@@ -9,12 +9,24 @@ class UserAccessService extends Service {
     if (!user) {
       ctx.helper.error({ ctx, msg: '该账号不存在' })
     }
-    // let verifyPsw = await ctx.compare(payload.password, user.password)
-    if (payload.password !== user.password) {
+    let verifyPsw = await ctx.compare(payload.password, user.password)
+    if (!verifyPsw) {
       ctx.helper.error({ ctx, msg: '账号密码不正确' })
     }
     // 生成Token令牌
-    return { token: await service.actionToken.apply(user._id) }
+    const token = await service.actionToken.apply(user._id)
+    const { _id: id, realName, mobile, createdAt, avatar } = user
+    // 重新组装数据
+    return {
+      token,
+      userInfo: {
+        id,
+        realName,
+        mobile,
+        createdAt,
+        avatar
+      }
+    }
   }
 
   async logout() {
