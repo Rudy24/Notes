@@ -7,7 +7,7 @@
  * @FilePath: \vehicle-mp\src\api\user.ts
  */
 import request from '@/utils/request'
-import { LoginRequestProps } from './requestProps'
+import { LoginRequestProps, modifyRequestPsw } from './requestProps'
 export function Login(params: LoginRequestProps) {
 	return request({
 		url: '/api/user/access/login',
@@ -15,9 +15,19 @@ export function Login(params: LoginRequestProps) {
 		data: params
 	})
 }
+// 注册
 export function Register(params: LoginRequestProps) {
 	return request({
 		url: '/api/user/access/register',
+		method: 'POST',
+		data: params
+	})
+}
+
+// 修改密码
+export function ModifyPswApi(params: modifyRequestPsw) {
+	return request({
+		url: '/api/user/access/modifyPsw',
 		method: 'POST',
 		data: params
 	})

@@ -14,16 +14,16 @@ service.interceptors.request.use(
 		const token = (store.state as any).user.token
 		config.headers['Content-Type'] = contentType || 'application/json'
 		if (token) {
-			config.headers.token = token
+			config.headers['Authorization'] = `Bearer ${token}`
 		}
 		return config
 	},
-	(error) => Promise.reject(error)
+	error => Promise.reject(error)
 )
 
 // response interceptor
 service.interceptors.response.use(
-	(response) => {
+	response => {
 		const res = response.data
 		if (res.code !== 0) {
 			ElMessage({
@@ -37,7 +37,7 @@ service.interceptors.response.use(
 			return res
 		}
 	},
-	(error) => {
+	error => {
 		const { data, status, statusText } = error.response
 		ElMessage({
 			message: error.error,

@@ -2,44 +2,42 @@
 	<div class="login-container">
 		<el-form
 			ref="loginFormRef"
-			:model="loginForm"
+			:model="form"
 			:rules="loginRules"
 			class="login-form"
 			auto-complete="on"
 			label-position="left"
 		>
 			<div class="title-container">
-				<h3 class="title">登录</h3>
+				<h3 class="title">修改密码</h3>
 			</div>
-			<el-form-item prop="mobile">
+			<el-form-item prop="originPassword">
 				<el-input
-					ref="mobile"
-					v-model.trim="loginForm.mobile"
-					placeholder="请输入手机号码"
-					name="mobile"
-					type="text"
+					:key="passwordType"
+					:type="passwordType"
+					v-model.trim="form.originPassword"
+					placeholder="请输入原始密码"
 					tabindex="1"
 					auto-complete="on"
 				/>
 			</el-form-item>
 
-			<el-form-item prop="password">
+			<el-form-item prop="newPassword1">
 				<el-input
 					:key="passwordType"
-					ref="password"
-					v-model.trim="loginForm.password"
+					v-model.trim="form.newPassword1"
 					:type="passwordType"
 					placeholder="请输入密码"
-					name="password"
 					tabindex="2"
 					auto-complete="on"
 				/>
 			</el-form-item>
-			<el-form-item prop="realName" v-show="!isReg">
+			<el-form-item prop="newPassword2">
 				<el-input
-					v-model.trim="loginForm.realName"
-					placeholder="请输入真实姓名"
-					name="realName"
+					:key="passwordType"
+					:type="passwordType"
+					v-model.trim="form.newPassword2"
+					placeholder="请再次输入密码"
 					tabindex="2"
 					auto-complete="on"
 				/>
@@ -50,10 +48,7 @@
 				type="primary"
 				style="width: 100%; margin-bottom: 30px"
 				@click.prevent="handleLogin"
-				>{{ isReg ? '登陆' : '注册' }}</el-button
-			>
-			<el-button @click="isReg = !isReg"
-				>切换{{ isReg ? '注册' : '登陆' }}</el-button
+				>提交</el-button
 			>
 		</el-form>
 	</div>
@@ -63,8 +58,9 @@
 import { defineComponent, ref, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
-import { Register, Login } from '@/api/user'
-import { LoginRequestProps } from '@/api/requestProps'
+import { ModifyPswApi } from '@/api/user'
+import { modifyRequestPsw } from '@/api/requestProps'
+import { ElMessage } from 'element-plus'
 type passwordTypeProps = 'password' | 'text'
 type pwdOrUname = string | number
 export default defineComponent({
@@ -75,16 +71,6 @@ export default defineComponent({
 		const loading = ref<boolean>(false)
 		const loginFormRef = ref<HTMLElement | null>(null)
 		const passwordType = ref<passwordTypeProps>('password')
-		const validatemobile = (
-			rule: any,
-			value: pwdOrUname,
-			callback: Function
-		) => {
-			if (!value) {
-				callback(new Error('手机号码不能为空'))
-			}
-			callback()
-		}
 		const validatePassword = (
 			rule: any,
 			value: pwdOrUname,
@@ -93,40 +79,61 @@ export default defineComponent({
 			if (!value) callback(new Error('密码不能为空'))
 			callback()
 		}
-		const loginForm: LoginRequestProps = reactive({
-			mobile: '',
-			password: '',
-			realName: ''
+		const validatePassword1 = (
+			rule: any,
+			value: pwdOrUname,
+			callback: Function
+		) => {
+			if (!value) callback(new Error('密码不能为空'))
+			callback()
+		}
+		const validatePassword2 = (
+			rule: any,
+			value: pwdOrUname,
+			callback: Function
+		) => {
+			const { newPassword1, newPassword2 } = form
+			if (!value) callback(new Error('密码不能为空'))
+			else if (newPassword1 !== newPassword2)
+				callback(new Error('两次密码不一致'))
+			callback()
+		}
+
+		const form: modifyRequestPsw = reactive({
+			originPassword: '',
+			newPassword1: '',
+			newPassword2: ''
 		})
-		let isReg = ref<boolean>(true)
+
+		let isReg = ref<boolean>(false)
 		const loginRules = {
-			mobile: [{ required: true, trigger: 'blur', validator: validatemobile }],
-			password: [
+			originPassword: [
 				{ required: true, trigger: 'blur', validator: validatePassword }
+			],
+			newPassword1: [
+				{ required: true, trigger: 'blur', validator: validatePassword1 }
+			],
+			newPassword2: [
+				{ required: true, trigger: 'blur', validator: validatePassword2 }
 			]
 		}
 		const handleLogin = (): void => {
 			;(loginFormRef.value as any).validate(async (valid: boolean) => {
 				if (valid) {
-					const { mobile, password, realName } = loginForm
-					const request = isReg.value ? Login : Register
-					const params = {
-						mobile,
-						password,
-						realName
-					}
-
-					if (!isReg) delete params.realName
 					try {
-						const { data } = await request(params)
-						if (isReg.value) {
-							store.commit('user/setToken', data.token)
-							store.commit('user/setUserInfo', data.userInfo)
+						console.log('ASDFADSF')
+						await ModifyPswApi({ ...form })
+						ElMessage({
+							message: '修改密码成功',
+							type: 'success',
+							duration: 5 * 1000
+						})
+						setTimeout(() => {
 							router.push('/')
-						} else {
-							isReg.value = !isReg.value
-						}
-					} catch (e) {}
+						}, 1000)
+					} catch (e) {
+						console.log(e, 'e')
+					}
 				}
 			})
 		}
@@ -142,7 +149,7 @@ export default defineComponent({
 			isReg,
 			loading,
 			loginRules,
-			loginForm,
+			form,
 			loginFormRef,
 			passwordType,
 			showPwd,

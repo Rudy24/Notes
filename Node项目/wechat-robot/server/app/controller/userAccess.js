@@ -16,8 +16,9 @@ class UserAccessController extends Controller {
     }
 
     this.UserResetPswTransfer = {
-      password: { type: 'password', required: true, allowEmpty: false, min: 6 },
-      oldPassword: { type: 'password', required: true, allowEmpty: false, min: 6 }
+      originPassword: { type: 'password', required: true, allowEmpty: false, min: 6 },
+      newPassword1: { type: 'password', required: true, allowEmpty: false, min: 6 },
+      newPassword2: { type: 'password', required: true, allowEmpty: false, min: 6 }
     }
 
     this.UserUpdateTransfer = {
@@ -49,14 +50,15 @@ class UserAccessController extends Controller {
   }
 
   // 修改密码
-  async resetPsw() {
+  async modifyPsw() {
     const { ctx, service } = this
     // 校验参数
     ctx.validate(this.UserResetPswTransfer)
     // 组装参数
     const payload = ctx.request.body || {}
+    console.log('-------------')
     // 调用 Service 进行业务处理
-    await service.userAccess.resetPsw(payload)
+    await service.userAccess.modifyPsw(payload)
     // 设置响应内容和响应状态码
     ctx.helper.success({ ctx })
   }

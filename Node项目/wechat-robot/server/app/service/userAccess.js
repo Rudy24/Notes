@@ -31,23 +31,28 @@ class UserAccessService extends Service {
 
   async logout() {
   }
-
-  async resetPsw(values) {
+  // 修改密码
+  async modifyPsw(payload) {
     const { ctx, service } = this
+    const { originPassword, newPassword1, newPassword2 } = payload
+    // 校验两次密码是否一直
+    if (newPassword1 !== newPassword2) {
+      ctx.helper.error({ ctx, msg: '两次密码输入不一致' })
+    }
     // ctx.state.user 可以提取到JWT编码的data
     const _id = ctx.state.user.data._id
+    console.log(_id, '=====================')
     const user = await service.user.find(_id)
-    if (!user) {
-      ctx.throw(404, 'user is not found')
-    }
+    if (!user) ctx.helper.error({ ctx, msg: '无效token' })
 
-    let verifyPsw = await ctx.compare(values.oldPassword, user.password)
+    // 对比输入的原始密码是否正确
+    let verifyPsw = await ctx.compare(originPassword, user.password)
     if (!verifyPsw) {
-      ctx.throw(404, 'user password error')
+      ctx.helper.error({ ctx, msg: '原始密码错误' })
     } else {
       // 重置密码
-      values.password = await ctx.genHash(values.password)
-      return service.user.findByIdAndUpdate(_id, values)
+      const p = await ctx.genHash(newPassword1)
+      return service.user.findByIdAndUpdate(_id, { password: p })
     }
   }
 

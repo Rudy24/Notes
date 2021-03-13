@@ -26,7 +26,7 @@
 				<template #dropdown>
 					<el-dropdown-menu>
 						<el-dropdown-item @click="signOut">退出</el-dropdown-item>
-						<el-dropdown-item>修改密码</el-dropdown-item>
+						<el-dropdown-item @click="modify">修改密码</el-dropdown-item>
 					</el-dropdown-menu>
 				</template>
 			</el-dropdown>
@@ -35,17 +35,24 @@
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 export default defineComponent({
 	name: 'header',
 	setup() {
 		const store = useStore()
+		const router = useRouter()
 		const signOut = () => {
 			store.commit('user/signOut')
 		}
 		const _d: any = localStorage.getItem('userInfo')
 		const userInfo = typeof _d === 'string' ? JSON.parse(_d) : _d
+
+		const modify = () => {
+			router.push('/password')
+		}
 		return {
+			modify,
 			signOut,
 			userInfo
 		}

@@ -15,82 +15,90 @@ import Login from '@/views/login/index.vue'
 const _component = (file: string) => import(`@/views/${file}/index.vue`)
 
 const routes: Array<RouteRecordRaw> = [
-  {
-    path: '/',
-    component: LayOut,
-    redirect: '/',
-    meta: {
-      title: '模块一',
-      icon: 'el-icon-location'
-    },
-    children: [
-      {
-        name: 'home',
-        path: '/',
-        component: Home,
-        meta: {
-          title: '首页',
-          hidden: true
-        }
-      },
-      {
-        name: 'center',
-        path: '/center',
-        component: _component('center'),
-        meta: {
-          title: '个人中心'
-
-        }
-      }
-    ]
-  },
-  {
-    path: '/outher',
-    component: LayOut,
-    meta: {
-      title: '模块二',
-      icon: 'el-icon-platform-eleme',
-      hidden: false,
-      iconStyle: {
-        color: 'yellow'
-      }
-    },
-    redirect: 'outher/setting',
-    children: [
-      {
-        name: 'setting',
-        path: '/outher/setting',
-        component: _component('setting'),
-        meta: {
-          title: '设置',
-          hidden: false
-        }
-      },
-      {
-        name: 'about',
-        path: '/outher/about',
-        component: _component('about'),
-        meta: {
-          title: '关于',
-          hiddenTag: true
-        }
-      }
-    ]
-  },
-  {
-    path: '/login',
-    name: 'login',
-    meta: {
-      hidden: true,
-      title: '登录'
-    },
-    component: Login// r => require.ensure([], () => r(require('@/views/login/index.vue')), 'login')//Login
-  }
+	{
+		path: '/',
+		component: LayOut,
+		redirect: '/',
+		meta: {
+			title: '模块一',
+			icon: 'el-icon-location'
+		},
+		children: [
+			{
+				name: 'home',
+				path: '/',
+				component: Home,
+				meta: {
+					title: '首页',
+					hidden: true
+				}
+			},
+			{
+				name: '修改密码',
+				path: '/password',
+				component: _component('password'),
+				meta: {
+					title: '修改密码',
+					hidden: true
+				}
+			},
+			{
+				name: 'center',
+				path: '/center',
+				component: _component('center'),
+				meta: {
+					title: '个人中心'
+				}
+			}
+		]
+	},
+	{
+		path: '/outher',
+		component: LayOut,
+		meta: {
+			title: '模块二',
+			icon: 'el-icon-platform-eleme',
+			hidden: false,
+			iconStyle: {
+				color: 'yellow'
+			}
+		},
+		redirect: 'outher/setting',
+		children: [
+			{
+				name: 'setting',
+				path: '/outher/setting',
+				component: _component('setting'),
+				meta: {
+					title: '设置',
+					hidden: false
+				}
+			},
+			{
+				name: 'about',
+				path: '/outher/about',
+				component: _component('about'),
+				meta: {
+					title: '关于',
+					hiddenTag: true
+				}
+			}
+		]
+	},
+	{
+		path: '/login',
+		name: 'login',
+		meta: {
+			hidden: true,
+			title: '登录'
+		},
+		component: Login // r => require.ensure([], () => r(require('@/views/login/index.vue')), 'login')//Login
+	}
 ]
 
 const router = createRouter({
-  history: createWebHashHistory(),
-  routes
+	history: createWebHashHistory(),
+	routes
 })
 router.beforeEach((to, from, next) => useBeforeAuthen(to, from, next))
 // router.afterEach((to, form) => usAfterAuthen(to, form))
