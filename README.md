@@ -16,10 +16,11 @@
 8. [字符串如何比较大小](https://github.com/Rudy24/Notes/blob/master/JavaScript/compireString.md)
 9. [class 类](https://github.com/Rudy24/Notes/blob/master/JavaScript/class.md)
 10. [构造函数及构造函数与普通函数的区别](https://github.com/Rudy24/Notes/blob/master/JavaScript/构造函数.md)
-11. [详解Object.create](https://github.com/Rudy24/Notes/blob/master/JavaScript/Object/create/Object.create.md)
-
+11. [详解 Object.create](https://github.com/Rudy24/Notes/blob/master/JavaScript/Object/create/Object.create.md)
+12. [浅拷贝和深拷贝](https://github.com/Rudy24/Notes/blob/master/JavaScript/%E6%B5%85%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B7%B1%E6%8B%B7%E8%B4%9D.md)
 
 ### Polyfill
+
 1. [new](https://github.com/Rudy24/Notes/blob/master/polyfill/new.md)
 2. [instanceof](https://github.com/Rudy24/Notes/blob/master/polyfill/instanceof.md)
 
@@ -48,13 +49,14 @@
 
 1. [依赖收集](https://github.com/Rudy24/Notes/blob/master/Vue%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/%E4%BE%9D%E8%B5%96%E6%94%B6%E9%9B%86.md)
 2. [聊聊 Vue 的 template 编译](https://github.com/Rudy24/Notes/blob/master/Vue%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/%E8%81%8A%E8%81%8AVue%E7%9A%84template%E7%BC%96%E8%AF%91.md)
-3. [Vue.js异步更新DOM策略及nextTick](https://github.com/Rudy24/Notes/blob/master/Vue%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/Vue.js%E5%BC%82%E6%AD%A5%E6%9B%B4%E6%96%B0DOM%E7%AD%96%E7%95%A5%E5%8F%8AnextTick.md)
+3. [Vue.js 异步更新 DOM 策略及 nextTick](https://github.com/Rudy24/Notes/blob/master/Vue%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/Vue.js%E5%BC%82%E6%AD%A5%E6%9B%B4%E6%96%B0DOM%E7%AD%96%E7%95%A5%E5%8F%8AnextTick.md)
 
 ### iconfont
-1. [Iconfont介绍及优缺点](https://github.com/Rudy24/Notes/blob/master/Iconfont/Iconfont%E4%BB%8B%E7%BB%8D%E5%8F%8A%E4%BC%98%E7%BC%BA%E7%82%B9.md)
 
+1. [Iconfont 介绍及优缺点](https://github.com/Rudy24/Notes/blob/master/Iconfont/Iconfont%E4%BB%8B%E7%BB%8D%E5%8F%8A%E4%BC%98%E7%BC%BA%E7%82%B9.md)
 
 ### flutter widget 学习笔记
+
 1. [SafeArea 设置屏幕安全区域](https://github.com/Rudy24/Notes/blob/master/flutter/lib/safearea/safearea.md)
 2. [Expanded 填补可用的空间](https://github.com/Rudy24/Notes/blob/master/flutter/lib/expanded/expanded.md)
 3. [Wrap 自动换行神器](https://github.com/Rudy24/Notes/blob/master/flutter/lib/wrap/wrap.md)
@@ -62,12 +64,13 @@
 5. [Opacity 透明度](https://github.com/Rudy24/Notes/blob/master/flutter/lib/opacity/opacity.md)
 6. [fadeTransition 淡入淡出动画](https://github.com/Rudy24/Notes/blob/master/flutter/lib/fadeTransition/fadeTransition.md)
 7. [floatingActionButton 浮动按钮](https://github.com/Rudy24/Notes/blob/master/flutter/lib/floatingActionButton/floatingActionButton.md)
-> 1. flutter widget 一共有54个,demo已经全部写完了,但是部分没有注释, 感兴趣的可以自己去看看源码[flutter widget demo](https://github.com/Rudy24/Notes/tree/master/flutter/lib)
-> 2. flutter 这块东西之前是单独一个仓库,后面直接移到Notes 仓库下面觉得更合适些
+   > 1. flutter widget 一共有 54 个,demo 已经全部写完了,但是部分没有注释, 感兴趣的可以自己去看看源码[flutter widget demo](https://github.com/Rudy24/Notes/tree/master/flutter/lib)
+   > 2. flutter 这块东西之前是单独一个仓库,后面直接移到 Notes 仓库下面觉得更合适些
 
 #### webpack
-1. [webpack概念](https://github.com/Rudy24/Notes/blob/master/webpack/webpack%E6%A6%82%E5%BF%B5.md)
 
+1. [webpack 概念](https://github.com/Rudy24/Notes/blob/master/webpack/webpack%E6%A6%82%E5%BF%B5.md)
 
 #### 小项目
+
 1. [跑马灯转盘-抽奖系统](https://github.com/Rudy24/Notes/blob/master/%E5%B0%8F%E9%A1%B9%E7%9B%AE/README.md)
