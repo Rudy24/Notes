@@ -411,21 +411,19 @@ bind 和其他两个方法作用也是一致的，只是该方法会返回一个
 同样的，也来模拟实现下 bind
 
 ```javascript
-Function.prototype.myBind = function (context) {
-  if (typeof this !== "function") {
-    throw new TypeError("Error");
-  }
-  var _this = this;
-  var args = [...arguments].slice(1);
+Function.prototype.myBind = function (ctx) {
+  if (typeof this !== 'function') throw new TypeError('Error')
 
-  // 返回一个函数
-  return function F() {
-    // 因为返回了一个函数，我们可以new F()，所以需要判断
+  let _this = this
+  let args = [...arguments].slice(1)
+
+  return function F () {
+    // 这里需要加这个判断是因为,bind会返回一个函数,这个函数可以作为构造函数
     if (this instanceof F) {
-      return new _this(...args, ...arguments);
+      return new _this(...args, ...arguments)
     }
-
-    return _this.apply(context, args.concat(...arguments));
-  };
-};
+    // 这里参数需要拼接当前参数和绑定时传的参数
+    return _this.apply(ctx, args.concat(...arguments))
+  }
+}
 ```
