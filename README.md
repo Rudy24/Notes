@@ -23,6 +23,7 @@
 
 1. [new](https://github.com/Rudy24/Notes/blob/master/polyfill/new.md)
 2. [instanceof](https://github.com/Rudy24/Notes/blob/master/polyfill/instanceof.md)
+3. [call,apply,bind](https://github.com/Rudy24/Notes/blob/master/polyfill/call%2Capply%2Cbind.md)
 
 ### Http
 
