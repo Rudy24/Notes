@@ -491,3 +491,109 @@ const f4 = (s) => {
 }
 
 ```
+
+5. 判断是否符合USD格式
+
+给定字符串 str，检查其是否符合美元书写格式
+
+1. 以 $ 开始
+2. 整数部分，从个位起，满 3 个数字用 , 分隔
+3. 如果为小数，则小数部分长度为 1-2
+4. 正确的格式如：$1,023,032.03 或者 $2.03，错误的格式如：$3,432,12.12 或者 $34,344.3**
+
+```javascript
+
+const s5 = '$12,345.67'
+const f5 = (s) => {
+  const reg = /^\$\d{1,3}(,\d{3})*(\.\d{1,2})?$/
+  return reg.test(s)
+}
+
+```
+
+如何格式化 USD？
+现提供3中解决方案，1. 正则，2. js，3. js api
+1. 正则
+```javascript
+const s = '1234567890.12'
+const f6 = (s) => {
+  const reg = /(?!^)(?=(\d{3})+(?!\d))/g
+  const val = (s/1).toFixed(2)
+  return val.replace(reg, ',')
+}
+
+```
+
+2. js
+```javascript
+function toThousandsNum (s, idx = 2) {
+  let num = String(s)
+  let spot = ''
+  if (/\.?/g.test(s)) {
+    let arr = num.split('.')
+    num = arr[0]
+    spot = arr[1]
+  }
+  let result = ''
+
+  while (num.length > 3) {
+    result = ',' + num.slice(-3) + result
+    num = num.slice(0, num.length - 3)
+  }
+
+  if (num) result = num + result
+  if (spot) result += `.${spot.slice(0, idx)}`
+  return result
+}
+
+
+```
+
+3. js api
+```javascript
+const s = '123456789.15'
+const n = new Intl.NumberFormat('en').format(s)
+
+var num = 1450068.1234;
+console.log(num.toLocaleString()) // 1,450,068.123
+
+```
+
+
+#### 获取url对应的值
+
+获取 url 中的参数
+
+1. 指定参数名称，返回该参数的值 或者 空字符串
+2. 不指定参数名称，返回全部的参数对象 或者 {}
+3. 如果存在多个同名参数，则返回数组
+```javascript
+
+function getUrlParam(url, key) {
+	const arr = {}
+	url.replace(/\??(\w+)=(\w+)&?/g, function (match, matchKey, matchValue) {
+		// 对应的key不存在
+		if (!arr[matchKey]) {
+			arr[matchKey] = matchValue
+		} else {
+			// 拼接成数组
+			const temp = arr[matchKey]
+			arr[matchKey] = [].concat(temp, matchValue)
+		}
+	})
+	// 没有key，直接返回所有
+	if (!key) {
+		return arr
+	} else {
+		// 指定key，遍历数组中的key
+		for (ele in arr) {
+			if (arr.hasOwnProperty(ele)) {
+				if (ele === key) return arr[ele]
+			}
+		}
+		return ''
+	}
+}
+
+
+```
