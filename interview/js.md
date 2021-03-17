@@ -560,7 +560,7 @@ console.log(num.toLocaleString()) // 1,450,068.123
 ```
 
 
-#### 获取url对应的值
+#### 6. 获取url对应的值
 
 获取 url 中的参数
 
@@ -597,3 +597,96 @@ function getUrlParam(url, key) {
 
 
 ```
+
+#### 7. 验证邮箱
+songshaohua187@126.com
+
+```javascript
+
+function isEmail (email) {
+  const reg = /^([a-zA-Z0-9_\-])+\@(([a-zA-Z0-9])+\.)+([a-zA-Z0-9]{2,4})$/
+  return reg.test(email)
+}
+
+```
+
+#### 8. 验证身份证号码
+身份证号码可能为15位或18位，15位为全数字，18位中前17位为数字，最后一位为数字或者X
+
+1. 15 全是数字
+2. 18 17数字 + x
+```javascript
+
+
+const f8 = (s) => {
+  const reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|x|X)$)/
+  return reg.test(s)
+}
+
+```
+
+#### 9. 匹配汉字
+```javascript
+
+const f9 = (s) => /^[\u4e00-\u9fa5]+$/.test(s)
+
+```
+
+#### 10. URL 校验
+```javascript
+
+const f10 = (s) => {
+  // const reg = /^(http(s)?:\/\/)?(www\.)?[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+(:\d+)*(\/\w+\.\w+)*([\?&]\w+=\w*)*$/
+  // https://www.baidu.com?a=1
+  const reg = /^(http(s)?:\/\/)?(www\.)?[a-zA-Z0-9](\.[a-zA-Z0-9])*(\/\w+)*([\?&]\w+=\w*)*$/
+  return reg.test(s)
+}
+
+```
+
+#### 垃圾回收机制
+1. 新生代算法
+  新生代内存中，内存空间分为两部分，from 空间 和 to空间，这两个空间一个空间是使用的，一个空间是空闲的
+2. 老生代算法
+  - 清除算法
+  - 标记压缩算法
+
+#### 跨域
+
+造成跨域的原因是同源策略。就是说协议、域名、端口任一不同就造成了跨域。
+1. JSONP:利用`<script>`标签没有漏洞的限制。
+
+```javascript
+
+function jsonp (url, jsonpCallback, success) {
+  const script = document.createElement('script');
+  script.src = url;
+  script.async = true
+  script.type = 'text/javascript'
+  window[jsonpCallback] = function (data) {
+    success && success (data)
+  }
+
+  document.body.appendChild(script)
+}
+
+jsonp('https://xxx', 'callback', function (val) {
+  console.log(val)
+})
+
+```
+
+2. CORS
+关键点：需要服务端开启`Access-Control-Allow-Origin`
+
+3. nginx 反向代理
+
+
+
+#### 重绘（Repaint）和回流（Reflow）
+
+重绘和回流是渲染步骤中的一小节，但是这两个步骤对于性能影响很大。
+- 重绘是当节点需要更改外观而不会影响布局的，比如改变 color 就叫称为重绘
+- 回流是布局或者几何属性需要改变就称为回流。
+
+回流必定会发生重绘，重绘不一定会引发回流。回流所需的成本比重绘高的多，改变深层次的节点很可能导致父节点的一系列回流。
