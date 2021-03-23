@@ -1,13 +1,16 @@
 ### 重点
+
 1. Vue 原理分析
 2. Vue-router 基本原理分析
 3. Vuex 基本原理分析
 
 #### 面试范围
+
 已分优先级
+
 1. JavaScript
 2. Css
-3. 框架,例如Vue
+3. 框架,例如 Vue
 4. 性能
 5. HTTP
 6. webpack
@@ -427,7 +430,7 @@ Function.prototype.myApply = function (context) {
   }
 
   delete context.fn;
-  
+
   return result;
 };
 ```
@@ -438,293 +441,277 @@ bind 和其他两个方法作用也是一致的，只是该方法会返回一个
 
 ```javascript
 Function.prototype.myBind = function (ctx) {
-  if (typeof this !== 'function') throw new TypeError('Error')
+  if (typeof this !== "function") throw new TypeError("Error");
 
-  let _this = this
-  let args = [...arguments].slice(1)
+  let _this = this;
+  let args = [...arguments].slice(1);
 
-  return function F () {
+  return function F() {
     // 这里需要加这个判断是因为,bind会返回一个函数,这个函数可以作为构造函数
     if (this instanceof F) {
-      return new _this(...args, ...arguments)
+      return new _this(...args, ...arguments);
     }
     // 这里参数需要拼接当前参数和绑定时传的参数
-    return _this.apply(ctx, args.concat(...arguments))
-  }
-}
+    return _this.apply(ctx, args.concat(...arguments));
+  };
+};
 ```
-
-
 
 #### 7. 0.1 + 0.2 === 0.3 ? 解决方案？
 
-0.1 转成2进制是个二进制无限循环小数，但是计算机内存有限，不能存储所有小数位数，只能有所取舍，所以就在某个精度点去舍，
-当然，代价就是，0.1在计算机内部根本就不是精确的0.1，而是一个有舍入误差的0.1。当代码被编译或解释后，0.1已经被四舍五入成一个与之很接近的计算机内部数字，以至于计算还没开始，一个很小的舍入错误就已经产生了。这也就是 0.1 + 0.2 不等于0.3 的原因
+0.1 转成 2 进制是个二进制无限循环小数，但是计算机内存有限，不能存储所有小数位数，只能有所取舍，所以就在某个精度点去舍，
+当然，代价就是，0.1 在计算机内部根本就不是精确的 0.1，而是一个有舍入误差的 0.1。当代码被编译或解释后，0.1 已经被四舍五入成一个与之很接近的计算机内部数字，以至于计算还没开始，一个很小的舍入错误就已经产生了。这也就是 0.1 + 0.2 不等于 0.3 的原因
 
-1. 为什么0.1 + 0.2 不等于0.3。因为计算机不能精确表示0.1， 0.2这样的浮点数，计算时使用的是带有舍入误差的数
-2. 并不是所有的浮点数在计算机内部都存在舍入误差，比如0.5就没有舍入误差
+1. 为什么 0.1 + 0.2 不等于 0.3。因为计算机不能精确表示 0.1， 0.2 这样的浮点数，计算时使用的是带有舍入误差的数
+2. 并不是所有的浮点数在计算机内部都存在舍入误差，比如 0.5 就没有舍入误差
 3. 具有舍入误差的运算结可能会符合我们的期望，原因可能是“负负得正”
-4. 怎么办？1个办法是使用整型代替浮点数计算；2是不要直接比较两个浮点数，而应该使用bignumber.js这样的浮点数运算库
+4. 怎么办？1 个办法是使用整型代替浮点数计算；2 是不要直接比较两个浮点数，而应该使用 bignumber.js 这样的浮点数运算库
 
-`parseFloat((0.1 + 0.2).toFixed(10))
-`
+`parseFloat((0.1 + 0.2).toFixed(10)) `
 
 #### 正则表达式
-1. var s1 = "get-element-by-id"; 给定这样一个连字符串，写一个function转换为驼峰命名法形式的字符串 getElementById
+
+1. var s1 = "get-element-by-id"; 给定这样一个连字符串，写一个 function 转换为驼峰命名法形式的字符串 getElementById
 
 ```javascript
-
-const format = (s1) => s1.replace(/-\w/g, s => s.slice(1).toUpperCase())
-
+const format = (s1) => s1.replace(/-\w/g, (s) => s.slice(1).toUpperCase());
 ```
 
 2. 判断字符串是否包含数字
 
 ```javascript
-const s2 = 'aabbccdd11dd'
+const s2 = "aabbccdd11dd";
 
 const f2 = (s) => {
-  const reg = /\d/g
-  return reg.test(s)
-}
-
+  const reg = /\d/g;
+  return reg.test(s);
+};
 ```
 
 3. 判断电话号码
-```javascript
 
-const s3 = '13715041614'
+```javascript
+const s3 = "13715041614";
 
 const f3 = (s) => {
-  const reg = /^1[3-9]\d{9}$/g
-  return reg.test(s)
-}
+  const reg = /^1[3-9]\d{9}$/g;
+  return reg.test(s);
+};
 ```
 
 4. 判断是否符合指定格式
 
-给定字符串str，检查其是否符合如下格式
+给定字符串 str，检查其是否符合如下格式
 
 XXX-XXX-XXXX
-其中X为Number类型
+其中 X 为 Number 类型
 
 ```javascript
-
-const s4 = '123-456-7890'
+const s4 = "123-456-7890";
 const f4 = (s) => {
-  const reg = /^(\d{3}\-){2}\d{4}$/g
-  return reg.test(s)
-}
-
+  const reg = /^(\d{3}\-){2}\d{4}$/g;
+  return reg.test(s);
+};
 ```
 
-5. 判断是否符合USD格式
+5. 判断是否符合 USD 格式
 
 给定字符串 str，检查其是否符合美元书写格式
 
 1. 以 $ 开始
 2. 整数部分，从个位起，满 3 个数字用 , 分隔
 3. 如果为小数，则小数部分长度为 1-2
-4. 正确的格式如：$1,023,032.03 或者 $2.03，错误的格式如：$3,432,12.12 或者 $34,344.3**
+4. 正确的格式如：$1,023,032.03 或者 $2.03，错误的格式如：$3,432,12.12 或者 $34,344.3\*\*
 
 ```javascript
-
-const s5 = '$12,345.67'
+const s5 = "$12,345.67";
 const f5 = (s) => {
-  const reg = /^\$\d{1,3}(,\d{3})*(\.\d{1,2})?$/
-  return reg.test(s)
-}
-
+  const reg = /^\$\d{1,3}(,\d{3})*(\.\d{1,2})?$/;
+  return reg.test(s);
+};
 ```
 
 如何格式化 USD？
-现提供3中解决方案，1. 正则，2. js，3. js api
-1. 正则
-```javascript
-const s = '1234567890.12'
-const f6 = (s) => {
-  const reg = /(?!^)(?=(\d{3})+(?!\d))/g
-  const val = (s/1).toFixed(2)
-  return val.replace(reg, ',')
-}
+现提供 3 中解决方案，1. 正则，2. js，3. js api
 
+1. 正则
+
+```javascript
+const s = "1234567890.12";
+const f6 = (s) => {
+  const reg = /(?!^)(?=(\d{3})+(?!\d))/g;
+  const val = (s / 1).toFixed(2);
+  return val.replace(reg, ",");
+};
 ```
 
 2. js
+
 ```javascript
-function toThousandsNum (s, idx = 2) {
-  let num = String(s)
-  let spot = ''
+function toThousandsNum(s, idx = 2) {
+  let num = String(s);
+  let spot = "";
   if (/\.?/g.test(s)) {
-    let arr = num.split('.')
-    num = arr[0]
-    spot = arr[1]
+    let arr = num.split(".");
+    num = arr[0];
+    spot = arr[1];
   }
-  let result = ''
+  let result = "";
 
   while (num.length > 3) {
-    result = ',' + num.slice(-3) + result
-    num = num.slice(0, num.length - 3)
+    result = "," + num.slice(-3) + result;
+    num = num.slice(0, num.length - 3);
   }
 
-  if (num) result = num + result
-  if (spot) result += `.${spot.slice(0, idx)}`
-  return result
+  if (num) result = num + result;
+  if (spot) result += `.${spot.slice(0, idx)}`;
+  return result;
 }
-
-
 ```
 
 3. js api
+
 ```javascript
-const s = '123456789.15'
-const n = new Intl.NumberFormat('en').format(s)
+const s = "123456789.15";
+const n = new Intl.NumberFormat("en").format(s);
 
 var num = 1450068.1234;
-console.log(num.toLocaleString()) // 1,450,068.123
-
+console.log(num.toLocaleString()); // 1,450,068.123
 ```
 
-
-#### 6. 获取url对应的值
+#### 6. 获取 url 对应的值
 
 获取 url 中的参数
 
 1. 指定参数名称，返回该参数的值 或者 空字符串
 2. 不指定参数名称，返回全部的参数对象 或者 {}
 3. 如果存在多个同名参数，则返回数组
+
 ```javascript
-
 function getUrlParam(url, key) {
-	const arr = {}
-	url.replace(/\??(\w+)=(\w+)&?/g, function (match, matchKey, matchValue) {
-		// 对应的key不存在
-		if (!arr[matchKey]) {
-			arr[matchKey] = matchValue
-		} else {
-			// 拼接成数组
-			const temp = arr[matchKey]
-			arr[matchKey] = [].concat(temp, matchValue)
-		}
-	})
-	// 没有key，直接返回所有
-	if (!key) {
-		return arr
-	} else {
-		// 指定key，遍历数组中的key
-		for (ele in arr) {
-			if (arr.hasOwnProperty(ele)) {
-				if (ele === key) return arr[ele]
-			}
-		}
-		return ''
-	}
+  const arr = {};
+  url.replace(/\??(\w+)=(\w+)&?/g, function (match, matchKey, matchValue) {
+    // 对应的key不存在
+    if (!arr[matchKey]) {
+      arr[matchKey] = matchValue;
+    } else {
+      // 拼接成数组
+      const temp = arr[matchKey];
+      arr[matchKey] = [].concat(temp, matchValue);
+    }
+  });
+  // 没有key，直接返回所有
+  if (!key) {
+    return arr;
+  } else {
+    // 指定key，遍历数组中的key
+    for (ele in arr) {
+      if (arr.hasOwnProperty(ele)) {
+        if (ele === key) return arr[ele];
+      }
+    }
+    return "";
+  }
 }
-
-
 ```
 
 #### 7. 验证邮箱
+
 songshaohua187@126.com
 
 ```javascript
-
-function isEmail (email) {
-  const reg = /^([a-zA-Z0-9_\-])+\@(([a-zA-Z0-9])+\.)+([a-zA-Z0-9]{2,4})$/
-  return reg.test(email)
+function isEmail(email) {
+  const reg = /^([a-zA-Z0-9_\-])+\@(([a-zA-Z0-9])+\.)+([a-zA-Z0-9]{2,4})$/;
+  return reg.test(email);
 }
-
 ```
 
 #### 8. 验证身份证号码
-身份证号码可能为15位或18位，15位为全数字，18位中前17位为数字，最后一位为数字或者X
+
+身份证号码可能为 15 位或 18 位，15 位为全数字，18 位中前 17 位为数字，最后一位为数字或者 X
 
 1. 15 全是数字
-2. 18 17数字 + x
+2. 18 17 数字 + x
+
 ```javascript
-
-
 const f8 = (s) => {
-  const reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|x|X)$)/
-  return reg.test(s)
-}
-
+  const reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|x|X)$)/;
+  return reg.test(s);
+};
 ```
 
 #### 9. 匹配汉字
+
 ```javascript
-
-const f9 = (s) => /^[\u4e00-\u9fa5]+$/.test(s)
-
+const f9 = (s) => /^[\u4e00-\u9fa5]+$/.test(s);
 ```
 
 #### 10. URL 校验
-```javascript
 
+```javascript
 const f10 = (s) => {
   // const reg = /^(http(s)?:\/\/)?(www\.)?[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+(:\d+)*(\/\w+\.\w+)*([\?&]\w+=\w*)*$/
   // https://www.baidu.com?a=1
-  const reg = /^(http(s)?:\/\/)?(www\.)?[a-zA-Z0-9](\.[a-zA-Z0-9])*(\/\w+)*([\?&]\w+=\w*)*$/
-  return reg.test(s)
-}
-
+  const reg = /^(http(s)?:\/\/)?(www\.)?[a-zA-Z0-9](\.[a-zA-Z0-9])*(\/\w+)*([\?&]\w+=\w*)*$/;
+  return reg.test(s);
+};
 ```
 
 #### 垃圾回收机制
+
 1. 新生代算法
-  新生代内存中，内存空间分为两部分，from 空间 和 to空间，这两个空间一个空间是使用的，一个空间是空闲的
+   新生代内存中，内存空间分为两部分，from 空间 和 to 空间，这两个空间一个空间是使用的，一个空间是空闲的
 2. 老生代算法
-  - 清除算法
-  - 标记压缩算法
+
+- 清除算法
+- 标记压缩算法
 
 #### 跨域
 
 造成跨域的原因是同源策略。就是说协议、域名、端口任一不同就造成了跨域。
+
 1. JSONP:利用`<script>`标签没有漏洞的限制。
 
 ```javascript
-
-function jsonp (url, jsonpCallback, success) {
-  const script = document.createElement('script');
+function jsonp(url, jsonpCallback, success) {
+  const script = document.createElement("script");
   script.src = url;
-  script.async = true
-  script.type = 'text/javascript'
+  script.async = true;
+  script.type = "text/javascript";
   window[jsonpCallback] = function (data) {
-    success && success (data)
-  }
+    success && success(data);
+  };
 
-  document.body.appendChild(script)
+  document.body.appendChild(script);
 }
 
-jsonp('https://xxx', 'callback', function (val) {
-  console.log(val)
-})
-
+jsonp("https://xxx", "callback", function (val) {
+  console.log(val);
+});
 ```
 
 2. CORS
-关键点：需要服务端开启`Access-Control-Allow-Origin`
+   关键点：需要服务端开启`Access-Control-Allow-Origin`
 
 3. nginx 反向代理
-
-
 
 #### 重绘（Repaint）和回流（Reflow）
 
 重绘和回流是渲染步骤中的一小节，但是这两个步骤对于性能影响很大。
+
 - 重绘是当节点需要更改外观而不会影响布局的，比如改变 color 就叫称为重绘
 - 回流是布局或者几何属性需要改变就称为回流。
 
 回流必定会发生重绘，重绘不一定会引发回流。回流所需的成本比重绘高的多，改变深层次的节点很可能导致父节点的一系列回流。
 
-
 #### 缓存
 
 通常浏览器缓存策略分为两种：
+
 1. 强缓存
 2. 协商缓存
 
 **强缓存**
 实现强缓存可以通过响应头实现：`Expires` 和 `Cache-Control`。强缓存标识缓存期间不需要请求，code 返回 200。
 `Expires`受限于本地时间，如果修改了本地时间，可能会造成缓存失效。
-`Cache-Control` 出现于http1.1，优先级高于`Expires` `Conche-control: max-age=30`，改属性标识30秒后过期。
+`Cache-Control` 出现于 http1.1，优先级高于`Expires` `Conche-control: max-age=30`，改属性标识 30 秒后过期。
