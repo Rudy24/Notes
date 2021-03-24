@@ -27,6 +27,52 @@
 17. 遇到的难点及认为做的好的地方
 18. TypeScript
 
+防抖
+当持续触发事件时，一定时间内没有再触发事件，事件处理函数才会执行一次，如果设定的
+事件到来之前，又触发了事件，就重新开始延时
+
+```javascript
+function debounce(func, wait) {
+  let timeout;
+  return function () {
+    let ctx = this;
+    if (timeout) clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      func.apply(ctx);
+    }, wait);
+  };
+}
+```
+
+节流：当持续触发事件时，保证一定时间段内只调用一次事件处理函数。
+
+```javascript
+function throttle(func, wait) {
+  let timeout;
+  return function () {
+    let ctx = this;
+    if (timeout) return;
+    timeout = setTimeout(function () {
+      func.apply(ctx);
+      timeout = null;
+    }, wait);
+  };
+}
+
+function throttle(func, wait) {
+  let timeout;
+  let previous = 0;
+  return function () {
+    let ctx = this;
+    let now = Date.now();
+    if (now - previous > wait) {
+      func.apply(ctx, arguments);
+      previous = Date.now();
+    }
+  };
+}
+```
+
 ##### 1. 对象转基本类型
 
 对象在转换基本类型时，首先会调用 valueOf 然后调用 toString。并且这两个方法你是可以重写的。
