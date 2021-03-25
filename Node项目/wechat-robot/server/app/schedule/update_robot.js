@@ -7,7 +7,7 @@ class UpdateCache extends Subscription {
     return {
       cron: '0 30 08 * * *',
       type: 'all',
-      disable: isSun === 7
+      disable: isSun === 0
     }
   }
 
