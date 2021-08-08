@@ -19,6 +19,11 @@
 11. [详解 Object.create](https://github.com/Rudy24/Notes/blob/master/JavaScript/Object/create/Object.create.md)
 12. [浅拷贝和深拷贝](https://github.com/Rudy24/Notes/blob/master/JavaScript/%E6%B5%85%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B7%B1%E6%8B%B7%E8%B4%9D.md)
 
+
+### Javascript 设计模式
+1. [构造器模式](https://github.com/Rudy24/Notes/blob/master/JavaScript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E6%9E%84%E9%80%A0%E5%99%A8%E6%A8%A1%E5%BC%8F.md)
+
+
 ### Polyfill
 
 1. [new](https://github.com/Rudy24/Notes/blob/master/polyfill/new.md)
