@@ -23,7 +23,8 @@
 ### Javascript 设计模式
 1. [构造器模式](https://github.com/Rudy24/Notes/blob/master/JavaScript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E6%9E%84%E9%80%A0%E5%99%A8%E6%A8%A1%E5%BC%8F.md)
 2. [单例模式](https://github.com/Rudy24/Notes/blob/master/JavaScript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F.md)
-1. [观察者模式](https://github.com/Rudy24/Notes/blob/master/JavaScript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F.md)
+3. [观察者模式](https://github.com/Rudy24/Notes/blob/master/JavaScript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F.md)
+4. [原型模式](https://github.com/Rudy24/Notes/blob/master/JavaScript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F.md)
 
 
 ### Polyfill
