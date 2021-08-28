@@ -1,3 +1,11 @@
+<!--
+ * @Author: 宋绍华
+ * @Date: 2021-08-08 16:05:09
+ * @LastEditTime: 2021-08-28 15:45:00
+ * @LastEditors: 宋绍华
+ * @Description: 
+ * @FilePath: \Notes\README.md
+-->
 # 宋绍华个人博客
 
 记录一些不太熟悉的知识点，集中起来学习，输出文档以便后续温故。
@@ -34,9 +42,10 @@
 3. [call,apply,bind](https://github.com/Rudy24/Notes/blob/master/polyfill/call%2Capply%2Cbind.md)
 3. [flat](https://github.com/Rudy24/Notes/blob/master/polyfill/flat.md)
 
-### Http
+### 网络协议
 
 1. [tcp/ip](https://github.com/Rudy24/Notes/blob/master/HTTP/tcp-ip/tcp-ip.md)
+2. [HTTP2及HTTP3的一些特性](https://github.com/Rudy24/Notes/blob/master/HTTP/tcp-ip/tcp-ip.md)
 
 ### nginx
 
