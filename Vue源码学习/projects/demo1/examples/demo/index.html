@@ -1,0 +1,34 @@
+<!--
+ * @Author: 宋绍华
+ * @Date: 2021-11-06 09:12:40
+ * @LastEditTime: 2021-12-11 21:48:38
+ * @LastEditors: 宋绍华
+ * @Description:
+ * @FilePath: \vue-2.5.17-beta.0\examples\demo\index.html
+-->
+<html>
+    <header>
+        <script src="../../dist/vue.js"></script>
+    </header>
+    <body>
+        <div id="app"></div>
+        <script>
+            new Vue({
+              el: '#app',
+              data () {
+                return {
+                  a: 1,
+                  b: 2,
+                  c: 3,
+                  d: 4
+                }
+              },
+              created () {
+                console.log(this.b)
+                this.b = 'aaa'
+              },
+              template: '<div>Hello World{{a}}{{b}}</div>'
+            })
+        </script>
+    </body>
+</html>
