@@ -162,4 +162,4 @@ vnode = render.call(vm._renderProxy, vm.$createElement);
 
 
 如果文中有错误的地方，麻烦各位指出，我会持续改进的。谢谢，
-需要调试源码的，这里点击[这里]()，希望star下。谢谢
+需要调试源码的，这里点击[这里](https://github.com/Rudy24/Notes/tree/master/Vue%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/projects/demo1)，按照 readme操作即可。希望star下。谢谢
