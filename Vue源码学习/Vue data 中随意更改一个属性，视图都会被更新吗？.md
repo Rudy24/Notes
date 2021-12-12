@@ -1,16 +1,16 @@
 # Vue data 中随意更改一个属性，视图都会被更新吗？
 
-面试官：看过 Vue 的源码没？
-候选者：看过。
-面试官：那你说下 **Vue data 中随意更改一个属性，视图都会被更新吗？**
-候选者：不会。
-面试官：why?
-候选者：如果该属性没有被用到 template 中，就没有必要去更新视图，频繁这样性能不好。
-面试官：那 Vue 中是如何去实现该方案的？
-候选者：在实例初始化过程中，利用`Object.defineProperty`对 data 中的属性进行数据监听，如果在 template 中被使用到的属性，就被 Dep 类收集起来，等到属性被更改时会调用`notify`更新视图。
-面试官：那你怎么知道那些属性是在 template 被用到的呢？
-候选者：WTF。。。这个倒不是很清楚，您能解释下吗？
-面试官：OK，那我就简单解释下：
+- 面试官：看过 Vue 的源码没？
+- 候选者：看过。
+- 面试官：那你说下 **Vue data 中随意更改一个属性，视图都会被更新吗？**
+- 候选者：不会。
+- 面试官：why?
+- 候选者：如果该属性没有被用到 template 中，就没有必要去更新视图，频繁这样性能不好。
+- 面试官：那 Vue 中是如何去实现该方案的？
+- 候选者：在实例初始化过程中，利用`Object.defineProperty`对 data 中的属性进行数据监听，如果在 template 中被使用到的属性，就被 Dep 类收集起来，等到属性被更改时会调用`notify`更新视图。
+- 面试官：那你怎么知道那些属性是在 template 被用到的呢？
+- 候选者：WTF。。。这个倒不是很清楚，您能解释下吗？
+- 面试官：OK，那我就简单解释下：
 
 先写个简单的 demo，其中 data 中有 4 个属性`a,b,c,d`，在模板中被利用到的属性只有`a,b`。看看是不是只有`a,b`才会调用`Dep`收集起来呢？
 
@@ -33,13 +33,31 @@ new Vue({
 });
 ```
 
-1. 首先在初始化时会利用`proxy`把每个属性都 代理一遍
+1. 在Vue`instance/state.js`里面，会利用`proxy`把每个属性都 代理一遍
 
 ```javascript
-proxy(vm, `_data`, key);
+const keys = Object.keys(data)
+  const props = vm.$options.props
+  const methods = vm.$options.methods
+  let i = keys.length
+  while (i--) {
+    const key = keys[i]
+    if (props && hasOwn(props, key)) {
+      process.env.NODE_ENV !== 'production' && warn(
+        `The data property "${key}" is already declared as a prop. ` +
+        `Use prop default value instead.`,
+        vm
+      )
+    } else if (!isReserved(key)) {
+      // 代理对象的属性
+      proxy(vm, `_data`, key)
+    }
+  }
+  // observe data
+  observe(data, true /* asRootData */)
 ```
 
-2. 然后需要对每个对象的属性进行监听, 先遍历每个属性，利用`defineReactive` 进行拦截
+2. 利用`defineReactive`对data中的每个属性进行劫持
 
 ```javascript
 observe(data, true /* asRootData */);
@@ -151,7 +169,6 @@ Vue.prototype.$mount = function (
 const { render, _parentVnode } = vm.$options;
 vnode = render.call(vm._renderProxy, vm.$createElement);
 ```
-
 ![](./images/render.png)
 
 ![](./images/anony.png)
