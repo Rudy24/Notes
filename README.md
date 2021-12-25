@@ -1,3 +1,11 @@
+<!--
+ * @Author: 宋绍华
+ * @Date: 2021-08-08 16:05:09
+ * @LastEditTime: 2021-08-28 15:46:21
+ * @LastEditors: 宋绍华
+ * @Description: 
+ * @FilePath: \Notes\README.md
+-->
 # 宋绍华个人博客
 
 记录一些不太熟悉的知识点，集中起来学习，输出文档以便后续温故。
@@ -19,6 +27,14 @@
 11. [详解 Object.create](https://github.com/Rudy24/Notes/blob/master/JavaScript/Object/create/Object.create.md)
 12. [浅拷贝和深拷贝](https://github.com/Rudy24/Notes/blob/master/JavaScript/%E6%B5%85%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B7%B1%E6%8B%B7%E8%B4%9D.md)
 
+
+### Javascript 设计模式
+1. [构造器模式](https://github.com/Rudy24/Notes/blob/master/JavaScript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E6%9E%84%E9%80%A0%E5%99%A8%E6%A8%A1%E5%BC%8F.md)
+2. [单例模式](https://github.com/Rudy24/Notes/blob/master/JavaScript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F.md)
+3. [观察者模式](https://github.com/Rudy24/Notes/blob/master/JavaScript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F.md)
+4. [原型模式](https://github.com/Rudy24/Notes/blob/master/JavaScript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F.md)
+
+
 ### Polyfill
 
 1. [new](https://github.com/Rudy24/Notes/blob/master/polyfill/new.md)
@@ -26,9 +42,10 @@
 3. [call,apply,bind](https://github.com/Rudy24/Notes/blob/master/polyfill/call%2Capply%2Cbind.md)
 3. [flat](https://github.com/Rudy24/Notes/blob/master/polyfill/flat.md)
 
-### Http
+### 网络协议
 
-1. [tcp/ip](https://github.com/Rudy24/Notes/blob/master/HTTP/tcp-ip/tcp-ip.md)
+1. [tcp/ip](https://github.com/Rudy24/Notes/blob/master/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/HTTP/tcp-ip/tcp-ip.md)
+2. [HTTP2及HTTP3的一些特性](https://github.com/Rudy24/Notes/blob/master/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/HTTP2%E5%8F%8AHTTP3%E7%9A%84%E4%B8%80%E4%BA%9B%E7%89%B9%E6%80%A7.md)
 
 ### nginx
 
