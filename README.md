@@ -1,10 +1,10 @@
 <!--
  * @Author: 宋绍华
  * @Date: 2021-08-08 16:05:09
- * @LastEditTime: 2021-08-28 15:46:21
+ * @LastEditTime: 2021-12-25 15:17:15
  * @LastEditors: 宋绍华
  * @Description: 
- * @FilePath: \Notes\README.md
+ * @FilePath: \Notes2\README.md
 -->
 # 宋绍华个人博客
 
@@ -69,6 +69,7 @@
 1. [依赖收集](https://github.com/Rudy24/Notes/blob/master/Vue%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/%E4%BE%9D%E8%B5%96%E6%94%B6%E9%9B%86.md)
 2. [聊聊 Vue 的 template 编译](https://github.com/Rudy24/Notes/blob/master/Vue%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/%E8%81%8A%E8%81%8AVue%E7%9A%84template%E7%BC%96%E8%AF%91.md)
 3. [Vue.js 异步更新 DOM 策略及 nextTick](https://github.com/Rudy24/Notes/blob/master/Vue%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/Vue.js%E5%BC%82%E6%AD%A5%E6%9B%B4%E6%96%B0DOM%E7%AD%96%E7%95%A5%E5%8F%8AnextTick.md)
+4. [Vue data 中随意更改一个属性，视图都会被更新吗](https://github.com/Rudy24/Notes/blob/master/Vue%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/Vue%20data%20%E4%B8%AD%E9%9A%8F%E6%84%8F%E6%9B%B4%E6%94%B9%E4%B8%80%E4%B8%AA%E5%B1%9E%E6%80%A7%EF%BC%8C%E8%A7%86%E5%9B%BE%E9%83%BD%E4%BC%9A%E8%A2%AB%E6%9B%B4%E6%96%B0%E5%90%97%EF%BC%9F.md)
 
 ### iconfont
 

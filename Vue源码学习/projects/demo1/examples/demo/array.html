@@ -1,0 +1,50 @@
+<!--
+ * @Author: 宋绍华
+ * @Date: 2021-11-06 09:12:40
+ * @LastEditTime: 2021-12-25 14:58:11
+ * @LastEditors: 宋绍华
+ * @Description:
+ * @FilePath: \vue-2.5.17-beta.0\examples\demo\index.html
+-->
+<html>
+<header>
+  <script src="../../dist/vue.js"></script>
+</header>
+
+<body>
+  <div id="app"></div>
+  <script>
+    // 非响应式数组
+    const list2 = [1, 2, 3]
+    new Vue({
+      el: '#app',
+      data () {
+        return {
+          list: [1, 2, 3]
+        }
+      },
+      methods: {
+        add () {
+          const k = Math.floor(Math.random() * 100)
+          console.log(list2)
+          if (!this.list.includes(k)) {
+            this.list.push(k)
+            this.list[0] = k
+            console.log(this.list)
+          } else {
+            console.log(`${k} 重复了`)
+          }
+        }
+      },
+      template: `
+              <div>
+                <button @click='add'>add</button>
+                <div v-for='n in list' :key='n'>{{n}}</div>
+                <div>访问单个属性{{list}}</div>
+              </div>
+              `
+    })
+  </script>
+</body>
+
+</html>
